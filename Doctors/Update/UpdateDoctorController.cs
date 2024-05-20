@@ -6,12 +6,12 @@ using System.ComponentModel.DataAnnotations;
 namespace MedicalAppointmentsManagementAPI.Doctors.Update;
 [Route("api/v1/[controller]")]
 [ApiController]
-public class DoctorUpdateController : ControllerBase
+public class UpdateDoctorController : ControllerBase
 {
 
-    private readonly DoctorUpdateService _service;
+    private readonly UpdateDoctorService _service;
 
-    public DoctorUpdateController(DoctorUpdateService service)
+    public UpdateDoctorController(UpdateDoctorService service)
     {
         _service = service;
     }

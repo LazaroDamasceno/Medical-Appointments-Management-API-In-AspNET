@@ -29,7 +29,7 @@ builder.Services.AddTransient<FindAllDoctorsService>();
 builder.Services.AddTransient<HireDoctorService>();
 builder.Services.AddTransient<TerminateDoctorService>();
 builder.Services.AddTransient<FindDoctorByLicenseNumberService>();
-builder.Services.AddTransient<DoctorUpdateService>();
+builder.Services.AddTransient<UpdateDoctorService>();
 
 var app = builder.Build();
 

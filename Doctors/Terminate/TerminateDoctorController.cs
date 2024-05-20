@@ -15,6 +15,7 @@ public class TerminateDoctorController : ControllerBase
         _service = service;
     }
 
+    [HttpPost]
     public IActionResult Terminate([Required, StringLength(7)] string doctorLicenseNumber)
     {
         _service.Terminate(doctorLicenseNumber);

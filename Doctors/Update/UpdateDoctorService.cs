@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MedicalAppointmentsManagementAPI.Doctors.Update;
 
-public class DoctorUpdateService : IDoctorUpdateService
+public class UpdateDoctorService : IUpdateDoctorService
 {
 
     private readonly FindDoctorByLicenseNumberService _findDoctorByLicenseNumber;
     private readonly AppDbContext _context;
 
-    public DoctorUpdateService(FindDoctorByLicenseNumberService findDoctorByLicenseNumber, AppDbContext context)
+    public UpdateDoctorService(FindDoctorByLicenseNumberService findDoctorByLicenseNumber, AppDbContext context)
     {
         _findDoctorByLicenseNumber = findDoctorByLicenseNumber;
         _context = context;
