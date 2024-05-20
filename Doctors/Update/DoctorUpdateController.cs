@@ -16,6 +16,7 @@ public class DoctorUpdateController : ControllerBase
         _service = service;
     }
 
+    [HttpPut("doctorLicenseNumber")]
     public IActionResult Update([Required, StringLength(7)] string doctorLicenseNumber, [Required, FromBody] UpdateSystemUserDTO dto)
     {
         _service.Update(doctorLicenseNumber, dto);
