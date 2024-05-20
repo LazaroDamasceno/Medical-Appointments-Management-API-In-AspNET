@@ -16,15 +16,17 @@ public class UpdateSystemUserService
 
     public void Update([Required] Patient patient, [Required] UpdateSystemUserDTO dto)
     {
-        patient.SystemUser.Update(dto);
-        _context.Update(patient.SystemUser);
+        SystemUser? systemUser = patient.SystemUser;
+        systemUser.Update(dto);
+        _context.Update(systemUser);
         _context.SaveChanges();
     }
 
     public void Update([Required] Doctor doctor, [Required] UpdateSystemUserDTO dto)
     {
-        doctor.SystemUser.Update(dto);
-        _context.Update(doctor.SystemUser);
+        SystemUser? systemUser = doctor.SystemUser;
+        systemUser.Update(dto);
+        _context.Update(systemUser);
         _context.SaveChanges();
     }
 

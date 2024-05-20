@@ -1,5 +1,6 @@
-﻿using MedicalAppointmentsManagementAPI.Patient.FindBySsn;
-using MedicalAppointmentsManagementAPI.SystemUser;
+﻿
+using MedicalAppointmentsManagementAPI.Patients.FindBySsn;
+using MedicalAppointmentsManagementAPI.SystemUsers;
 using System.ComponentModel.DataAnnotations;
 
 namespace MedicalAppointmentsManagementAPI.Patients.Update;
