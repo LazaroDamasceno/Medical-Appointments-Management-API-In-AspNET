@@ -26,6 +26,9 @@ public class SystemUserEntity
     [JsonIgnore]
     public PatientEntity? Patient { get; set; }
 
+    [JsonIgnore]
+    public DoctorEntity? Doctor { get; set; }
+
     public static SystemUserEntity CreateInstance(RegisterSystemUserDTO dto)
     {
         return new()
