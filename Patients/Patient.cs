@@ -26,9 +26,4 @@ public class Patient
         };
     }
 
-    public void UpdateAddress(string address)
-    {
-        Address = address;
-    }
-
 }

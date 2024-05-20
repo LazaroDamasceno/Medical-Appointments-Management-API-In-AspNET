@@ -42,13 +42,4 @@ public class SystemUser
         };
     }
 
-    public void Update(UpdateSystemUserDTO dto)
-    {
-        Name = dto.Name;
-        Birthday = dto.Birthday;
-        Email = dto.Email;
-        PhoneNumber = dto.PhoneNumber;
-        Gender = dto.Gender;
-    }
-
 }
