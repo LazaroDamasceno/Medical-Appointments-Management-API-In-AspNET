@@ -15,7 +15,7 @@ public class FindDoctorByLicenseNumberService
 
     public Doctor Find([Required, StringLength(7)] string doctorLicenseNumber)
     {
-        if (_context.Doctors.Any(e => e.LicenseNumber == doctorLicenseNumber)) 
+        if (!_context.Doctors.Any(e => e.LicenseNumber == doctorLicenseNumber)) 
         {
             throw new DoctorNotFoundException(doctorLicenseNumber);
         }

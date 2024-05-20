@@ -3,11 +3,9 @@ using MedicalAppointmentsManagementAPI.Doctors.FindAll;
 using MedicalAppointmentsManagementAPI.Doctors.FindByLicenseNumber;
 using MedicalAppointmentsManagementAPI.Doctors.Hire;
 using MedicalAppointmentsManagementAPI.Doctors.Terminate;
-using MedicalAppointmentsManagementAPI.Doctors.Update;
 using MedicalAppointmentsManagementAPI.Patients.FindAll;
 using MedicalAppointmentsManagementAPI.Patients.FindBySsn;
 using MedicalAppointmentsManagementAPI.Patients.Register;
-using MedicalAppointmentsManagementAPI.Patients.Update;
 
 using MedicalAppointmentsManagementAPI.SystemUsers;
 
@@ -20,16 +18,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>();
-builder.Services.AddTransient<UpdateSystemUserService>();
-builder.Services.AddTransient<UpdatePatientService>();
-builder.Services.AddTransient<SelfRegisterPatientService>();
-builder.Services.AddTransient<FindPatientBySsnService>();
-builder.Services.AddTransient<FindAllPatientsService>();
-builder.Services.AddTransient<FindAllDoctorsService>();
-builder.Services.AddTransient<HireDoctorService>();
-builder.Services.AddTransient<TerminateDoctorService>();
-builder.Services.AddTransient<FindDoctorByLicenseNumberService>();
-builder.Services.AddTransient<UpdateDoctorService>();
+builder.Services.AddScoped<SelfRegisterPatientService>();
+builder.Services.AddScoped<FindPatientBySsnService>();
+builder.Services.AddScoped<FindAllPatientsService>();
+builder.Services.AddScoped<FindAllDoctorsService>();
+builder.Services.AddScoped<HireDoctorService>();
+builder.Services.AddScoped<TerminateDoctorService>();
+builder.Services.AddScoped<FindDoctorByLicenseNumberService>();
 
 var app = builder.Build();
 
