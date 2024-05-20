@@ -1,0 +1,11 @@
+{
+	"doctorLicenseNumber": "St Dennis",
+	"systemUserDTO": {
+		"name": "Leo Santos",
+		"birthday": "2000-05-20",
+		"ssn": "123456789",
+		"email": "leo.santos@leosantos.com",
+		"phoneNumber": "0123456789",
+		"gender": "m"
+	}
+}

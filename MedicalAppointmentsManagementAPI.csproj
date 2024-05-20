@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Jsons\HireDoctor.json" />
     <Content Remove="Jsons\SelfRegisterPatient.json" />
   </ItemGroup>
 
@@ -25,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Jsons\HireDoctor.json" />
     <None Include="Jsons\SelfRegisterPatient.json" />
   </ItemGroup>
 
