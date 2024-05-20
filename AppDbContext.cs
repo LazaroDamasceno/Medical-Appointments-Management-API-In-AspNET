@@ -1,4 +1,5 @@
-﻿using MedicalAppointmentsManagementAPI.Patient;
+﻿using MedicalAppointmentsManagementAPI.Doctor;
+using MedicalAppointmentsManagementAPI.Patient;
 using MedicalAppointmentsManagementAPI.SystemUser;
 using Microsoft.EntityFrameworkCore;
 

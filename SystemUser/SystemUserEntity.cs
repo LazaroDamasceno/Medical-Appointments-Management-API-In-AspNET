@@ -1,4 +1,5 @@
-﻿using MedicalAppointmentsManagementAPI.Patient;
+﻿using MedicalAppointmentsManagementAPI.Doctor;
+using MedicalAppointmentsManagementAPI.Patient;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
