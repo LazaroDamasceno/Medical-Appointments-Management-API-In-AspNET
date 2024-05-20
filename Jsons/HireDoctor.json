@@ -1,10 +1,10 @@
 {
 	"doctorLicenseNumber": "St Dennis",
 	"systemUserDTO": {
-		"name": "Leo Santos",
+		"name": "G Vaz",
 		"birthday": "2000-05-20",
-		"ssn": "123456789",
-		"email": "leo.santos@leosantos.com",
+		"ssn": "987654321",
+		"email": "gvaz@gvaz.com",
 		"phoneNumber": "0123456789",
 		"gender": "m"
 	}
