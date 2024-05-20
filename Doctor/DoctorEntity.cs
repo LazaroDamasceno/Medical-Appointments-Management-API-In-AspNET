@@ -23,7 +23,7 @@ public class DoctorEntity
     [ForeignKey("SystemUser")]
     public Guid? SystemUserId { get; set; }
 
-    public DoctorEntity CreateInstance(string LicenseNumber, SystemUserEntity systemUser)
+    public static DoctorEntity CreateInstance(string LicenseNumber, SystemUserEntity systemUser)
     {
         return new()
         {
