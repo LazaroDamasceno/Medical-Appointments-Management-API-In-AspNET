@@ -1,4 +1,5 @@
 using MedicalAppointmentsManagementAPI;
+using MedicalAppointmentsManagementAPI.Doctor.FindAll;
 using MedicalAppointmentsManagementAPI.Patient.FindAll;
 using MedicalAppointmentsManagementAPI.Patient.FindBySsn;
 using MedicalAppointmentsManagementAPI.Patient.Register;
@@ -19,6 +20,7 @@ builder.Services.AddTransient<UpdatePatientService>();
 builder.Services.AddTransient<SelfRegisterPatientService>();
 builder.Services.AddTransient<FindPatientBySsnService>();
 builder.Services.AddTransient<FindAllPatientsService>();
+builder.Services.AddTransient<FindAllDoctorsController>();
 
 var app = builder.Build();
 
