@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 namespace MedicalAppointmentsManagementAPI.Doctors.FindAll;
-[Route("api/[controller]")]
+[Route("api/v1/doctors")]
 [ApiController]
 public class FindAllDoctorsController : ControllerBase
 {

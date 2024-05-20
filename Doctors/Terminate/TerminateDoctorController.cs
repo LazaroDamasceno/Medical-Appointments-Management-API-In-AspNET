@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace MedicalAppointmentsManagementAPI.Doctors.Terminate;
-[Route("api/v1/[controller]")]
+[Route("api/v1/doctors")]
 [ApiController]
 public class TerminateDoctorController : ControllerBase
 {
@@ -15,7 +15,7 @@ public class TerminateDoctorController : ControllerBase
         _service = service;
     }
 
-    [HttpPost]
+    [HttpPatch]
     public IActionResult Terminate([Required, StringLength(7)] string doctorLicenseNumber)
     {
         _service.Terminate(doctorLicenseNumber);

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace MedicalAppointmentsManagementAPI.Doctors.Update;
-[Route("api/v1/[controller]")]
+[Route("api/v1/doctors")]
 [ApiController]
 public class UpdateDoctorController : ControllerBase
 {
