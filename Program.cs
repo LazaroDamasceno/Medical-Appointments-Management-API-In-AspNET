@@ -1,6 +1,8 @@
 using MedicalAppointmentsManagementAPI;
 using MedicalAppointmentsManagementAPI.Doctor.FindAll;
+using MedicalAppointmentsManagementAPI.Doctor.FindByLicenseNumber;
 using MedicalAppointmentsManagementAPI.Doctor.Hire;
+using MedicalAppointmentsManagementAPI.Doctor.Terminate;
 using MedicalAppointmentsManagementAPI.Patient.FindAll;
 using MedicalAppointmentsManagementAPI.Patient.FindBySsn;
 using MedicalAppointmentsManagementAPI.Patient.Register;
@@ -23,6 +25,8 @@ builder.Services.AddTransient<FindPatientBySsnService>();
 builder.Services.AddTransient<FindAllPatientsService>();
 builder.Services.AddTransient<FindAllDoctorsService>();
 builder.Services.AddTransient<HireDoctorService>();
+builder.Services.AddTransient<TerminateDoctorService>();
+builder.Services.AddTransient<FindDoctorByLicenseNumberService>();
 
 var app = builder.Build();
 

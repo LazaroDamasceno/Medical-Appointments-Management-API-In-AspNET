@@ -8,9 +8,9 @@ namespace MedicalAppointmentsManagementAPI;
 public class AppDbContext : DbContext
 {
 
-    public DbSet<SystemUserEntity> SystemUsers { get; set; }
-    public DbSet<PatientEntity> Patients { get; set; }
-    public DbSet<DoctorEntity> Doctors { get; set; }
+    public DbSet<SystemUser> SystemUsers { get; set; }
+    public DbSet<Patient> Patients { get; set; }
+    public DbSet<Doctor> Doctors { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -20,30 +20,30 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
-            .Entity<SystemUserEntity>()
+            .Entity<SystemUser>()
             .HasIndex(e => e.Ssn)
             .IsUnique();
 
         modelBuilder
-            .Entity<SystemUserEntity>()
+            .Entity<SystemUser>()
             .HasIndex(e => e.Email)
             .IsUnique();
 
-        modelBuilder.Entity<SystemUserEntity>()
+        modelBuilder.Entity<SystemUser>()
           .HasOne(e => e.Patient)
           .WithOne(e => e.SystemUser)
-          .HasForeignKey<PatientEntity>(e => e.SystemUserId);
+          .HasForeignKey<Patient>(e => e.SystemUserId);
 
         modelBuilder
-            .Entity<DoctorEntity>()
+            .Entity<Doctor>()
             .HasIndex(e => e.LicenseNumber)
             .IsUnique();
 
 
-        modelBuilder.Entity<SystemUserEntity>()
+        modelBuilder.Entity<SystemUser>()
           .HasOne(e => e.Doctor)
           .WithOne(e => e.SystemUser)
-          .HasForeignKey<DoctorEntity>(e => e.SystemUserId);
+          .HasForeignKey<Doctor>(e => e.SystemUserId);
     }
 
 }

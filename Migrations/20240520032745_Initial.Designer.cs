@@ -20,7 +20,7 @@ namespace MedicalAppointmentsManagementAPI.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.5");
 
-            modelBuilder.Entity("MedicalAppointmentsManagementAPI.Doctor.DoctorEntity", b =>
+            modelBuilder.Entity("MedicalAppointmentsManagementAPI.DoctorEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -54,7 +54,7 @@ namespace MedicalAppointmentsManagementAPI.Migrations
                     b.ToTable("Doctors");
                 });
 
-            modelBuilder.Entity("MedicalAppointmentsManagementAPI.Patient.PatientEntity", b =>
+            modelBuilder.Entity("MedicalAppointmentsManagementAPI.PatientEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -75,7 +75,7 @@ namespace MedicalAppointmentsManagementAPI.Migrations
                     b.ToTable("Patients");
                 });
 
-            modelBuilder.Entity("MedicalAppointmentsManagementAPI.SystemUser.SystemUserEntity", b =>
+            modelBuilder.Entity("MedicalAppointmentsManagementAPI.SystemUserEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -112,25 +112,25 @@ namespace MedicalAppointmentsManagementAPI.Migrations
                     b.ToTable("SystemUsers");
                 });
 
-            modelBuilder.Entity("MedicalAppointmentsManagementAPI.Doctor.DoctorEntity", b =>
+            modelBuilder.Entity("MedicalAppointmentsManagementAPI.DoctorEntity", b =>
                 {
-                    b.HasOne("MedicalAppointmentsManagementAPI.SystemUser.SystemUserEntity", "SystemUser")
+                    b.HasOne("MedicalAppointmentsManagementAPI.SystemUserEntity", "SystemUser")
                         .WithOne("Doctor")
-                        .HasForeignKey("MedicalAppointmentsManagementAPI.Doctor.DoctorEntity", "SystemUserId");
+                        .HasForeignKey("MedicalAppointmentsManagementAPI.DoctorEntity", "SystemUserId");
 
                     b.Navigation("SystemUser");
                 });
 
-            modelBuilder.Entity("MedicalAppointmentsManagementAPI.Patient.PatientEntity", b =>
+            modelBuilder.Entity("MedicalAppointmentsManagementAPI.PatientEntity", b =>
                 {
-                    b.HasOne("MedicalAppointmentsManagementAPI.SystemUser.SystemUserEntity", "SystemUser")
+                    b.HasOne("MedicalAppointmentsManagementAPI.SystemUserEntity", "SystemUser")
                         .WithOne("Patient")
-                        .HasForeignKey("MedicalAppointmentsManagementAPI.Patient.PatientEntity", "SystemUserId");
+                        .HasForeignKey("MedicalAppointmentsManagementAPI.PatientEntity", "SystemUserId");
 
                     b.Navigation("SystemUser");
                 });
 
-            modelBuilder.Entity("MedicalAppointmentsManagementAPI.SystemUser.SystemUserEntity", b =>
+            modelBuilder.Entity("MedicalAppointmentsManagementAPI.SystemUserEntity", b =>
                 {
                     b.Navigation("Doctor");
 
