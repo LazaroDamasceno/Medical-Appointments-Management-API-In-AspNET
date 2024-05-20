@@ -16,6 +16,8 @@ public class DoctorEntity
 
     public DateTime? TerminationDateTime { get; set; }
 
+    public string Address { get; set; } = ""; 
+
     public SystemUserEntity? SystemUser { get; set; }
 
     [ForeignKey("SystemUser")]
@@ -28,6 +30,11 @@ public class DoctorEntity
             LicenseNumber = LicenseNumber,
             SystemUser = systemUser
         };
+    }
+
+    public void Terminate()
+    {
+        TerminationDateTime = DateTime.Now;
     }
 
 }

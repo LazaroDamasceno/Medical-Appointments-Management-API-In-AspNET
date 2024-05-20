@@ -20,7 +20,7 @@ builder.Services.AddTransient<UpdatePatientService>();
 builder.Services.AddTransient<SelfRegisterPatientService>();
 builder.Services.AddTransient<FindPatientBySsnService>();
 builder.Services.AddTransient<FindAllPatientsService>();
-builder.Services.AddTransient<FindAllDoctorsController>();
+builder.Services.AddTransient<FindAllDoctorsService>();
 
 var app = builder.Build();
 

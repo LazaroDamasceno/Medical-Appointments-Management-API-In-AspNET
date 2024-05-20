@@ -17,10 +17,14 @@ namespace MedicalAppointmentsManagementAPI.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.5");
 
-            modelBuilder.Entity("MedicalAppointmentsManagementAPI.DoctorEntity", b =>
+            modelBuilder.Entity("MedicalAppointmentsManagementAPI.Doctor.DoctorEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("HiringDateTime")
@@ -105,11 +109,11 @@ namespace MedicalAppointmentsManagementAPI.Migrations
                     b.ToTable("SystemUsers");
                 });
 
-            modelBuilder.Entity("MedicalAppointmentsManagementAPI.DoctorEntity", b =>
+            modelBuilder.Entity("MedicalAppointmentsManagementAPI.Doctor.DoctorEntity", b =>
                 {
                     b.HasOne("MedicalAppointmentsManagementAPI.SystemUser.SystemUserEntity", "SystemUser")
                         .WithOne("Doctor")
-                        .HasForeignKey("MedicalAppointmentsManagementAPI.DoctorEntity", "SystemUserId");
+                        .HasForeignKey("MedicalAppointmentsManagementAPI.Doctor.DoctorEntity", "SystemUserId");
 
                     b.Navigation("SystemUser");
                 });

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalAppointmentsManagementAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240520023510_Initial")]
+    [Migration("20240520032745_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -19,6 +19,40 @@ namespace MedicalAppointmentsManagementAPI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.5");
+
+            modelBuilder.Entity("MedicalAppointmentsManagementAPI.Doctor.DoctorEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("HiringDateTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LicenseNumber")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("SystemUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("TerminationDateTime")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LicenseNumber")
+                        .IsUnique();
+
+                    b.HasIndex("SystemUserId")
+                        .IsUnique();
+
+                    b.ToTable("Doctors");
+                });
 
             modelBuilder.Entity("MedicalAppointmentsManagementAPI.Patient.PatientEntity", b =>
                 {
@@ -78,6 +112,15 @@ namespace MedicalAppointmentsManagementAPI.Migrations
                     b.ToTable("SystemUsers");
                 });
 
+            modelBuilder.Entity("MedicalAppointmentsManagementAPI.Doctor.DoctorEntity", b =>
+                {
+                    b.HasOne("MedicalAppointmentsManagementAPI.SystemUser.SystemUserEntity", "SystemUser")
+                        .WithOne("Doctor")
+                        .HasForeignKey("MedicalAppointmentsManagementAPI.Doctor.DoctorEntity", "SystemUserId");
+
+                    b.Navigation("SystemUser");
+                });
+
             modelBuilder.Entity("MedicalAppointmentsManagementAPI.Patient.PatientEntity", b =>
                 {
                     b.HasOne("MedicalAppointmentsManagementAPI.SystemUser.SystemUserEntity", "SystemUser")
@@ -89,6 +132,8 @@ namespace MedicalAppointmentsManagementAPI.Migrations
 
             modelBuilder.Entity("MedicalAppointmentsManagementAPI.SystemUser.SystemUserEntity", b =>
                 {
+                    b.Navigation("Doctor");
+
                     b.Navigation("Patient");
                 });
 #pragma warning restore 612, 618
