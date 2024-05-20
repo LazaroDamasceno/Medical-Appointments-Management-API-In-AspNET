@@ -1,4 +1,5 @@
-﻿using MedicalAppointmentsManagementAPI.SystemUser;
+﻿
+using MedicalAppointmentsManagementAPI.SystemUsers;
 using System.ComponentModel.DataAnnotations;
 
 namespace MedicalAppointmentsManagementAPI.Doctors.Hire;

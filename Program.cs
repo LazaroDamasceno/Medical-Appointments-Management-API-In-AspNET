@@ -1,22 +1,14 @@
 using MedicalAppointmentsManagementAPI;
-using MedicalAppointmentsManagementAPI.Doctor.FindAll;
-using MedicalAppointmentsManagementAPI.Doctor.FindByLicenseNumber;
-using MedicalAppointmentsManagementAPI.Doctor.Hire;
-using MedicalAppointmentsManagementAPI.Doctor.Terminate;
 using MedicalAppointmentsManagementAPI.Doctors.FindAll;
 using MedicalAppointmentsManagementAPI.Doctors.FindByLicenseNumber;
 using MedicalAppointmentsManagementAPI.Doctors.Hire;
 using MedicalAppointmentsManagementAPI.Doctors.Terminate;
 using MedicalAppointmentsManagementAPI.Doctors.Update;
-using MedicalAppointmentsManagementAPI.Patient.FindAll;
-using MedicalAppointmentsManagementAPI.Patient.FindBySsn;
-using MedicalAppointmentsManagementAPI.Patient.Register;
-using MedicalAppointmentsManagementAPI.Patient.Update;
 using MedicalAppointmentsManagementAPI.Patients.FindAll;
 using MedicalAppointmentsManagementAPI.Patients.FindBySsn;
 using MedicalAppointmentsManagementAPI.Patients.Register;
 using MedicalAppointmentsManagementAPI.Patients.Update;
-using MedicalAppointmentsManagementAPI.SystemUser;
+
 using MedicalAppointmentsManagementAPI.SystemUsers;
 
 var builder = WebApplication.CreateBuilder(args);

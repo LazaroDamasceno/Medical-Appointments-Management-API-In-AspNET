@@ -1,6 +1,6 @@
-﻿using MedicalAppointmentsManagementAPI.Doctor;
-using MedicalAppointmentsManagementAPI.Patient;
-using MedicalAppointmentsManagementAPI.SystemUser;
+﻿using MedicalAppointmentsManagementAPI.Doctors;
+using MedicalAppointmentsManagementAPI.Patients;
+using MedicalAppointmentsManagementAPI.SystemUsers;
 using Microsoft.EntityFrameworkCore;
 
 namespace MedicalAppointmentsManagementAPI;

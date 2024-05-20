@@ -1,4 +1,4 @@
-﻿using MedicalAppointmentsManagementAPI.SystemUser;
+﻿using MedicalAppointmentsManagementAPI.SystemUsers;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
