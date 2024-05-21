@@ -35,9 +35,6 @@ public class Doctor
         };
     }
 
-    public void Terminate()
-    {
-        TerminationDateTime = DateTime.Now;
-    }
+    public void Terminate() => TerminationDateTime = DateTime.Now;
 
 }

@@ -36,4 +36,8 @@ public class MedicalAppointment
         };
     }
 
+    public void Cancel() => CancelledDateTime = DateTime.Now;
+
+    public void Finish() => FinishingDateTime = DateTime.Now;
+
 }
