@@ -15,6 +15,7 @@ public class CancelMedicalAppointmentController : ControllerBase
         _service = service;
     }
 
+    [HttpPatch]
     public IActionResult Cancel([Required, StringLength(9)] string ssn, [Required, StringLength(7)] string doctorLicenseNumber, [Required] DateTime scheduledDateTime)
     {
         _service.Cancel(ssn, doctorLicenseNumber, scheduledDateTime);
