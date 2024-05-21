@@ -31,31 +31,14 @@ public class AppDbContext : DbContext
             .HasIndex(e => e.Email)
             .IsUnique();
 
-        modelBuilder.Entity<SystemUser>()
-          .HasOne(e => e.Patient)
-          .WithOne(e => e.SystemUser)
-          .HasForeignKey<Patient>(e => e.SystemUserId);
-
         modelBuilder
             .Entity<Doctor>()
             .HasIndex(e => e.LicenseNumber)
             .IsUnique();
 
-
-        modelBuilder
-            .Entity<SystemUser>()
-            .HasOne(e => e.Doctor)
-            .WithOne(e => e.SystemUser)
-            .HasForeignKey<Doctor>(e => e.SystemUserId);
-
         modelBuilder
             .Entity<MedicalAppointment>()
             .HasOne(e => e.Patient)
-            .WithMany(e => e.MedicalAppointments);
-
-        modelBuilder
-            .Entity<MedicalAppointment>()
-            .HasOne(e => e.Doctor)
             .WithMany(e => e.MedicalAppointments);
     }
 
