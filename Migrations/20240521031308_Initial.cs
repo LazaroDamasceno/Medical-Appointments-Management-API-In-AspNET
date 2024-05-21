@@ -35,7 +35,6 @@ namespace MedicalAppointmentsManagementAPI.Migrations
                     LicenseNumber = table.Column<string>(type: "TEXT", nullable: false),
                     HiringDateTime = table.Column<DateTime>(type: "TEXT", nullable: false),
                     TerminationDateTime = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    Address = table.Column<string>(type: "TEXT", nullable: false),
                     SystemUserId = table.Column<Guid>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>

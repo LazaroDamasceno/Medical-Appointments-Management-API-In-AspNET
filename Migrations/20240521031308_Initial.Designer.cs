@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalAppointmentsManagementAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240520173315_Initial")]
+    [Migration("20240521031308_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -24,10 +24,6 @@ namespace MedicalAppointmentsManagementAPI.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("HiringDateTime")

@@ -16,8 +16,6 @@ public class Doctor
 
     public DateTime? TerminationDateTime { get; set; }
 
-    public string Address { get; set; } = ""; 
-
     public SystemUser? SystemUser { get; set; }
 
     [ForeignKey("SystemUser")]

@@ -23,10 +23,6 @@ namespace MedicalAppointmentsManagementAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime>("HiringDateTime")
                         .HasColumnType("TEXT");
 
