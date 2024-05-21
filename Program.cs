@@ -3,11 +3,12 @@ using MedicalAppointmentsManagementAPI.Doctors.FindAll;
 using MedicalAppointmentsManagementAPI.Doctors.FindByLicenseNumber;
 using MedicalAppointmentsManagementAPI.Doctors.Hire;
 using MedicalAppointmentsManagementAPI.Doctors.Terminate;
+using MedicalAppointmentsManagementAPI.MedicalAppointments.AddMedicalNoted;
+using MedicalAppointmentsManagementAPI.MedicalAppointments.Cancel;
+using MedicalAppointmentsManagementAPI.MedicalAppointments.Find;
 using MedicalAppointmentsManagementAPI.Patients.FindAll;
 using MedicalAppointmentsManagementAPI.Patients.FindBySsn;
 using MedicalAppointmentsManagementAPI.Patients.Register;
-
-using MedicalAppointmentsManagementAPI.SystemUsers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,9 @@ builder.Services.AddScoped<FindAllDoctorsService>();
 builder.Services.AddScoped<HireDoctorService>();
 builder.Services.AddScoped<TerminateDoctorService>();
 builder.Services.AddScoped<FindDoctorByLicenseNumberService>();
+builder.Services.AddScoped<FindMedicalAppointmentService>();
+builder.Services.AddScoped<CancelMedicalAppointmentService>();
+builder.Services.AddScoped<AddMedicalNoteService>();
 
 var app = builder.Build();
 

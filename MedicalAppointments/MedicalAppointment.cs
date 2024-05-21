@@ -16,7 +16,7 @@ public class MedicalAppointment
 
     public DateTime? FinishingDateTime { get; set; }
 
-    public string MedicalNotes { get; set; } = "";
+    public string MedicalNote { get; set; } = "";
 
     public Patient? Patient { get; set; }
 
@@ -37,6 +37,8 @@ public class MedicalAppointment
     }
 
     public void Cancel() => CancelledDateTime = DateTime.Now;
+
+    public void AddMedicalNote(string note) => MedicalNote = note;
 
     public void Finish() => FinishingDateTime = DateTime.Now;
 
