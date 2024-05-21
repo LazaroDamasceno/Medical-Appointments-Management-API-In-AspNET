@@ -1,4 +1,5 @@
 ﻿using MedicalAppointmentsManagementAPI.Doctors;
+using MedicalAppointmentsManagementAPI.MedicalAppointments;
 using MedicalAppointmentsManagementAPI.Patients;
 using MedicalAppointmentsManagementAPI.SystemUsers;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ public class AppDbContext : DbContext
     public DbSet<SystemUser> SystemUsers { get; set; }
     public DbSet<Patient> Patients { get; set; }
     public DbSet<Doctor> Doctors { get; set; }
+    public DbSet<MedicalAppointment> MedicalAppointments { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -40,10 +42,21 @@ public class AppDbContext : DbContext
             .IsUnique();
 
 
-        modelBuilder.Entity<SystemUser>()
-          .HasOne(e => e.Doctor)
-          .WithOne(e => e.SystemUser)
-          .HasForeignKey<Doctor>(e => e.SystemUserId);
+        modelBuilder
+            .Entity<SystemUser>()
+            .HasOne(e => e.Doctor)
+            .WithOne(e => e.SystemUser)
+            .HasForeignKey<Doctor>(e => e.SystemUserId);
+
+        modelBuilder
+            .Entity<MedicalAppointment>()
+            .HasOne(e => e.Patient)
+            .WithMany(e => e.MedicalAppointments);
+
+        modelBuilder
+            .Entity<MedicalAppointment>()
+            .HasOne(e => e.Doctor)
+            .WithMany(e => e.MedicalAppointments);
     }
 
 }

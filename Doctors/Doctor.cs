@@ -1,6 +1,8 @@
-﻿using MedicalAppointmentsManagementAPI.SystemUsers;
+﻿using MedicalAppointmentsManagementAPI.MedicalAppointments;
+using MedicalAppointmentsManagementAPI.SystemUsers;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace MedicalAppointmentsManagementAPI.Doctors;
 
@@ -20,6 +22,9 @@ public class Doctor
 
     [ForeignKey("SystemUser")]
     public Guid? SystemUserId { get; set; }
+
+    [JsonIgnore]
+    public List<MedicalAppointment> MedicalAppointments { get; set; } = [];
 
     public static Doctor CreateInstance(string LicenseNumber, SystemUser systemUser)
     {
