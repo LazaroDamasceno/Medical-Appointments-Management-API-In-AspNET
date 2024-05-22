@@ -35,11 +35,6 @@ public class AppDbContext : DbContext
             .Entity<Doctor>()
             .HasIndex(e => e.LicenseNumber)
             .IsUnique();
-
-        modelBuilder
-            .Entity<MedicalAppointment>()
-            .HasOne(e => e.Patient)
-            .WithMany(e => e.MedicalAppointments);
     }
 
 }
