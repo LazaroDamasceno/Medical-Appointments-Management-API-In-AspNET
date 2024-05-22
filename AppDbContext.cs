@@ -40,18 +40,6 @@ public class AppDbContext : DbContext
             .Entity<MedicalAppointment>()
             .HasOne(e => e.Patient)
             .WithMany(e => e.MedicalAppointments);
-
-        modelBuilder
-            .Entity<SystemUser>()
-            .HasOne(e => e.Doctor)
-            .WithOne(e => e.SystemUser)
-            .HasForeignKey<Doctor>(e => e.SystemUserId);
-
-        modelBuilder
-            .Entity<SystemUser>()
-            .HasOne(e => e.Patient)
-            .WithOne(e => e.SystemUser)
-            .HasForeignKey<Patient>(e => e.SystemUserId);
     }
 
 }
