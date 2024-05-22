@@ -38,6 +38,8 @@ public class ScheduleMedicalAppointmentService : IScheduleMedicalAppointmentServ
                 e => e.Doctor == doctor 
                 && e.Patient == patient 
                 && e.ScheduledDateTime == dto.ScheduledDateTime
+                && e.CancelledDateTime == null
+                && e.FinishingDateTime == null
             );
         if (doesMedicalAppointmentExist) 
         {

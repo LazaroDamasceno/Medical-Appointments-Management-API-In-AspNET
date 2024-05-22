@@ -32,6 +32,8 @@ public class FindMedicalAppointmentService
                 e => e.Patient == patient
                 && e.Doctor == doctor
                 && e.ScheduledDateTime == scheduledDateTime
+                && e.FinishingDateTime == null
+                && e.CancelledDateTime == null
             );
         if (medicalAppointment == null)
         {
