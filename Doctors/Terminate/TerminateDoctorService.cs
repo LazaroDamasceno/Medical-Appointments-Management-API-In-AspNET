@@ -18,6 +18,10 @@ public class TerminateDoctorService : ITerminateDoctorService
     public void Terminate([Required, StringLength(7)] string doctorLicenseNumber)
     {
         Doctor doctor = _findDoctorByLicenseNumberService.Find(doctorLicenseNumber);
+        if (doctor.TerminationDateTime is not null) 
+        {
+            throw new DoctorTerminationException(doctorLicenseNumber);
+        }
         doctor.Terminate();
         _context.Update(doctor);
         _context.SaveChanges();
