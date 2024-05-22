@@ -19,22 +19,4 @@ public class AppDbContext : DbContext
         optionsBuilder.UseSqlite("DataSource=mydb;Cache=Shared");
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder
-            .Entity<SystemUser>()
-            .HasIndex(e => e.Ssn)
-            .IsUnique();
-
-        modelBuilder
-            .Entity<SystemUser>()
-            .HasIndex(e => e.Email)
-            .IsUnique();
-
-        modelBuilder
-            .Entity<Doctor>()
-            .HasIndex(e => e.LicenseNumber)
-            .IsUnique();
-    }
-
 }
