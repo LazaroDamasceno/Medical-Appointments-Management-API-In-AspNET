@@ -12,11 +12,11 @@ public class TransferMedicalAppointmentService : ITransferMedicalAppointmentServ
 
     private readonly IFindMedicalAppointmentService _findMedicalAppointment;
     private readonly AppDbContext _context;
-    private readonly ScheduleMedicalAppointmentService _scheduleMedicalAppointment;
+    private readonly IScheduleMedicalAppointmentService _scheduleMedicalAppointment;
 
     public TransferMedicalAppointmentService(IFindMedicalAppointmentService findMedicalAppointment, 
                                         AppDbContext context, 
-                                        ScheduleMedicalAppointmentService scheduleMedicalAppointment
+                                        IScheduleMedicalAppointmentService scheduleMedicalAppointment
     ) {
         _findMedicalAppointment = findMedicalAppointment;
         _context = context;
