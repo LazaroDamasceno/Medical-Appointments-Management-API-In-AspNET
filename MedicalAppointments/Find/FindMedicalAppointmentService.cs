@@ -9,13 +9,13 @@ public class FindMedicalAppointmentService : IFindMedicalAppointmentService
 {
 
     private readonly AppDbContext _context;
-    private readonly FindPatientBySsnService _findPatientBySsn;
-    private readonly FindDoctorByLicenseNumberService _findDoctorByLicenseNumber;
+    private readonly IFindPatientBySsnService _findPatientBySsn;
+    private readonly IFindDoctorByLicenseNumberService _findDoctorByLicenseNumber;
 
     public FindMedicalAppointmentService(
-        AppDbContext context, 
-        FindPatientBySsnService findPatientBySsn, 
-        FindDoctorByLicenseNumberService findDoctorByLicenseNumber
+            AppDbContext context, 
+            IFindPatientBySsnService findPatientBySsn, 
+            IFindDoctorByLicenseNumberService findDoctorByLicenseNumber
     ) {
         _context = context;
         _findPatientBySsn = findPatientBySsn;

@@ -1,4 +1,6 @@
-﻿namespace MedicalAppointmentsManagementAPI.Patients.FindBySsn;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MedicalAppointmentsManagementAPI.Patients.FindBySsn;
 
 public interface IFindPatientBySsnService
 {

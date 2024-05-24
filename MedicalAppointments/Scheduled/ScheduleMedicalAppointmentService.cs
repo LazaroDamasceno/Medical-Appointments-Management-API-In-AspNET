@@ -10,10 +10,10 @@ public class ScheduleMedicalAppointmentService : IScheduleMedicalAppointmentServ
 {
 
     private readonly AppDbContext _context;
-    private readonly FindDoctorByLicenseNumberService _findDoctorByLicenseNumber;
-    private readonly FindPatientBySsnService _findPatientBySsn;
+    private readonly IFindDoctorByLicenseNumberService _findDoctorByLicenseNumber;
+    private readonly IFindPatientBySsnService _findPatientBySsn;
 
-    public ScheduleMedicalAppointmentService(AppDbContext context, FindDoctorByLicenseNumberService findDoctorByLicenseNumber, FindPatientBySsnService findPatientBySsn)
+    public ScheduleMedicalAppointmentService(AppDbContext context, IFindDoctorByLicenseNumberService findDoctorByLicenseNumber, IFindPatientBySsnService findPatientBySsn)
     {
         _context = context;
         _findDoctorByLicenseNumber = findDoctorByLicenseNumber;

@@ -8,9 +8,9 @@ namespace MedicalAppointmentsManagementAPI.MedicalAppointments.AddMedicalNoted;
 public class AddMedicalNoteController : ControllerBase
 {
 
-    private readonly AddMedicalNoteService _service;
+    private readonly IAddMedicalNoteService _service;
 
-    public AddMedicalNoteController(AddMedicalNoteService service)
+    public AddMedicalNoteController(IAddMedicalNoteService service)
     {
         _service = service;
     }

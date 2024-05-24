@@ -8,9 +8,9 @@ namespace MedicalAppointmentsManagementAPI.Doctors.Terminate;
 public class TerminateDoctorController : ControllerBase
 {
 
-    private readonly TerminateDoctorService _service;
+    private readonly ITerminateDoctorService _service;
 
-    public TerminateDoctorController(TerminateDoctorService service)
+    public TerminateDoctorController(ITerminateDoctorService service)
     {
         _service = service;
     }

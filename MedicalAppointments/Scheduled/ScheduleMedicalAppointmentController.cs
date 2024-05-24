@@ -8,9 +8,9 @@ namespace MedicalAppointmentsManagementAPI.MedicalAppointments.Scheduled;
 public class ScheduleMedicalAppointment : ControllerBase
 {
 
-    private readonly ScheduleMedicalAppointmentService _service;
+    private readonly IScheduleMedicalAppointmentService _service;
 
-    public ScheduleMedicalAppointment(ScheduleMedicalAppointmentService service)
+    public ScheduleMedicalAppointment(IScheduleMedicalAppointmentService service)
     {
         _service = service;
     }

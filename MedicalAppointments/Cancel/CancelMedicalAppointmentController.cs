@@ -8,9 +8,9 @@ namespace MedicalAppointmentsManagementAPI.MedicalAppointments.Cancel;
 public class CancelMedicalAppointmentController : ControllerBase
 {
 
-    private readonly CancelMedicalAppointmentService _service;
+    private readonly ICancelMedicalAppointmentService _service;
 
-    public CancelMedicalAppointmentController(CancelMedicalAppointmentService service)
+    public CancelMedicalAppointmentController(ICancelMedicalAppointmentService service)
     {
         _service = service;
     }

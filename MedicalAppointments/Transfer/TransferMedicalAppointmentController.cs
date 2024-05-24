@@ -8,9 +8,9 @@ namespace MedicalAppointmentsManagementAPI.MedicalAppointments.Transfer;
 public class TransferMedicalAppointmentController : ControllerBase
 {
 
-    private readonly TransferMedicalAppointmentService _service;
+    private readonly ITransferMedicalAppointmentService _service;
 
-    public TransferMedicalAppointmentController(TransferMedicalAppointmentService service)
+    public TransferMedicalAppointmentController(ITransferMedicalAppointmentService service)
     {
         _service = service;
     }

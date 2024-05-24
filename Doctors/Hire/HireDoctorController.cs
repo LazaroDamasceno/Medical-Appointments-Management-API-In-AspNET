@@ -8,9 +8,9 @@ namespace MedicalAppointmentsManagementAPI.Doctors.Hire;
 public class HireDoctorController : ControllerBase
 {
     
-    private readonly HireDoctorService _service;
+    private readonly IHireDoctorService _service;
 
-    public HireDoctorController(HireDoctorService service)
+    public HireDoctorController(IHireDoctorService service)
     {
         _service = service;
     }

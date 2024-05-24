@@ -10,11 +10,11 @@ namespace MedicalAppointmentsManagementAPI.MedicalAppointments.Transfer;
 public class TransferMedicalAppointmentService : ITransferMedicalAppointmentService
 {
 
-    private readonly FindMedicalAppointmentService _findMedicalAppointment;
+    private readonly IFindMedicalAppointmentService _findMedicalAppointment;
     private readonly AppDbContext _context;
     private readonly ScheduleMedicalAppointmentService _scheduleMedicalAppointment;
 
-    public TransferMedicalAppointmentService(FindMedicalAppointmentService findMedicalAppointment, 
+    public TransferMedicalAppointmentService(IFindMedicalAppointmentService findMedicalAppointment, 
                                         AppDbContext context, 
                                         ScheduleMedicalAppointmentService scheduleMedicalAppointment
     ) {

@@ -12,9 +12,9 @@ public class CancelMedicalAppointmentService : ICancelMedicalAppointmentService
 {
 
     private readonly AppDbContext _context;
-    private readonly FindMedicalAppointmentService _findMedicalAppointment;
+    private readonly IFindMedicalAppointmentService _findMedicalAppointment;
 
-    public CancelMedicalAppointmentService(AppDbContext context, FindMedicalAppointmentService findMedicalAppointment)
+    public CancelMedicalAppointmentService(AppDbContext context, IFindMedicalAppointmentService findMedicalAppointment)
     {
         _context = context;
         _findMedicalAppointment = findMedicalAppointment;

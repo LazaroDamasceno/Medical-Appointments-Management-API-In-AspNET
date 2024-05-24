@@ -6,10 +6,10 @@ namespace MedicalAppointmentsManagementAPI.MedicalAppointments.AddMedicalNoted;
 public class AddMedicalNoteService : IAddMedicalNoteService
 {
 
-    private readonly FindMedicalAppointmentService _findMedicalAppointment;
+    private readonly IFindMedicalAppointmentService _findMedicalAppointment;
     private readonly AppDbContext _context;
 
-    public AddMedicalNoteService(FindMedicalAppointmentService findMedicalAppointment, AppDbContext context)
+    public AddMedicalNoteService(IFindMedicalAppointmentService findMedicalAppointment, AppDbContext context)
     {
         _findMedicalAppointment = findMedicalAppointment;
         _context = context;
