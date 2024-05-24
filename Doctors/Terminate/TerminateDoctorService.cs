@@ -7,9 +7,9 @@ public class TerminateDoctorService : ITerminateDoctorService
 {
 
     private readonly AppDbContext _context;
-    private readonly FindDoctorByLicenseNumberService _findDoctorByLicenseNumberService;
+    private readonly IFindDoctorByLicenseNumberService _findDoctorByLicenseNumberService;
 
-    public TerminateDoctorService(AppDbContext context, FindDoctorByLicenseNumberService findDoctorByLicenseNumberService)
+    public TerminateDoctorService(AppDbContext context, IFindDoctorByLicenseNumberService findDoctorByLicenseNumberService)
     {
         _context = context;
         _findDoctorByLicenseNumberService = findDoctorByLicenseNumberService;
