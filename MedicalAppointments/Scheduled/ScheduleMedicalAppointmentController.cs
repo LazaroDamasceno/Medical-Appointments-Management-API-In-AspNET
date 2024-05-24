@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace MedicalAppointmentsManagementAPI.MedicalAppointments.Scheduled;
-[Route("api/v1/medical-appointments")]
+[Route("api/v1/medical-appointments/new")]
 [ApiController]
 public class ScheduleMedicalAppointment : ControllerBase
 {

@@ -1,4 +1,8 @@
-﻿using MedicalAppointmentsManagementAPI.MedicalAppointments.Find;
+﻿using MedicalAppointmentsManagementAPI.Doctors;
+using MedicalAppointmentsManagementAPI.MedicalAppointments.Find;
+using MedicalAppointmentsManagementAPI.Patients;
+using MedicalAppointmentsManagementAPI.SystemUsers;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Intrinsics.X86;
 
@@ -35,6 +39,56 @@ public class CancelMedicalAppointmentService : ICancelMedicalAppointmentService
         {
             throw new CancelledMedicalAppointmentException(ssn, doctorLicenseNumber, dateTime.ToString());
         }
+    }
+
+    public void Cancel([Required] MedicalAppointment medicalAppointment)
+    {
+        ValidateDate(medicalAppointment);
+        medicalAppointment.Cancel();
+        _context.Update(medicalAppointment);
+        _context.SaveChanges();
+    }
+
+    private static void ValidateDate(MedicalAppointment medicalAppointment) 
+    {
+        if (medicalAppointment.CancelledDateTime is not null)
+        {
+            throw new CancelledMedicalAppointmentException(
+                GetSystemUSer(medicalAppointment).Ssn, 
+                GetDoctor(medicalAppointment).LicenseNumber,
+                medicalAppointment.ScheduledDateTime
+            );
+        }
+
+        if (medicalAppointment.FinishingDateTime is not null)
+        {
+            throw new CancelledMedicalAppointmentException(
+                GetSystemUSer(medicalAppointment).Ssn,
+                GetDoctor(medicalAppointment).LicenseNumber,
+                medicalAppointment.ScheduledDateTime
+            );
+        }
+    }
+
+    private static SystemUser GetSystemUSer(MedicalAppointment medicalAppointment)
+    {
+        if (medicalAppointment is null) throw new NullReferenceException();
+
+        Patient? patient = medicalAppointment.Patient;
+        if (patient is null) throw new NullReferenceException();
+
+        SystemUser? systemUser = patient.SystemUser;
+        if (systemUser is null) throw new NullReferenceException();
+        return systemUser;
+    }
+
+    private static Doctor GetDoctor(MedicalAppointment medicalAppointment)
+    {
+        if (medicalAppointment is null) throw new NullReferenceException();
+
+        Doctor? doctor = medicalAppointment.Doctor;
+        if (doctor is null) throw new NullReferenceException();
+        return doctor;
     }
 
 }
