@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MedicalAppointmentsManagementAPI.Doctors.FindByLicenseNumber;
 
-public class FindDoctorByLicenseNumberService
+public class FindDoctorByLicenseNumberService : IFindDoctorByLicenseNumberService
 {
 
     private readonly AppDbContext _context;

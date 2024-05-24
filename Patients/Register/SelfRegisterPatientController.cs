@@ -9,7 +9,7 @@ public class SelfRegisterPatientController : ControllerBase
 {
     private readonly ISelfRegisterPatientService _service;
 
-    public SelfRegisterPatientController(SelfRegisterPatientService service)
+    public SelfRegisterPatientController(ISelfRegisterPatientService service)
     {
         _service = service;
     }

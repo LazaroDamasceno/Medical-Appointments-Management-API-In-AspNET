@@ -7,9 +7,9 @@ namespace MedicalAppointmentsManagementAPI.Patients.FindAll;
 public class FindAllPatientsController : ControllerBase
 {
 
-    private readonly FindAllPatientsService _service;
+    private readonly IFindAllPatientsService _service;
 
-    public FindAllPatientsController(FindAllPatientsService service)
+    public FindAllPatientsController(IFindAllPatientsService service)
     {
         _service = service;
     }

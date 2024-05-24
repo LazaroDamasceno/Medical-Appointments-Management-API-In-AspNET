@@ -5,7 +5,7 @@ using MedicalAppointmentsManagementAPI.Patients.FindBySsn;
 
 namespace MedicalAppointmentsManagementAPI.MedicalAppointments.Find;
 
-public class FindMedicalAppointmentService
+public class FindMedicalAppointmentService : IFindMedicalAppointmentService
 {
 
     private readonly AppDbContext _context;

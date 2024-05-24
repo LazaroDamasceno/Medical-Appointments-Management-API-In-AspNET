@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MedicalAppointmentsManagementAPI.Patients.FindBySsn;
 
-public class FindPatientBySsnService : ControllerBase
+public class FindPatientBySsnService : IFindPatientBySsnService
 {
 
     private readonly AppDbContext _context;
