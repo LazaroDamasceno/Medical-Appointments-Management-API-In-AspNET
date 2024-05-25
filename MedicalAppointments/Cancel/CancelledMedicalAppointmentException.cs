@@ -14,4 +14,16 @@ public class CancelledMedicalAppointmentException
                 Medical appointment whose patient's ssn is {ssn}, doctor's license number is {doctorLicenseNumber} and scheduled date time is {dateTime} is already finished.
             """)
     { }
+
+    public CancelledMedicalAppointmentException(string ssn, DateTime dateTime)
+    : base($"""
+               Medical appointment whose patient's ssn is {ssn} and scheduled date time is {dateTime} is already cancelled.
+           """)
+    { }
+
+    public CancelledMedicalAppointmentException(string ssn, string dateTime)
+    : base($"""
+                Medical appointment whose patient's ssn is {ssn} and scheduled date time is {dateTime} is already finished.
+            """)
+    { }
 }

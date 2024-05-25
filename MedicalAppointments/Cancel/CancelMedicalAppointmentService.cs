@@ -18,24 +18,24 @@ public class CancelMedicalAppointmentService : ICancelMedicalAppointmentService
         _findMedicalAppointment = findMedicalAppointment;
     }
 
-    public void Cancel([Required, StringLength(9)] string ssn, [Required, StringLength(7)] string doctorLicenseNumber, [Required] DateTime scheduledDateTime)
+    public void Cancel([Required] CancelMedicalAppointmentDTO dto)
     {
-        MedicalAppointment medicalAppointment = _findMedicalAppointment.Find(ssn, doctorLicenseNumber, scheduledDateTime);
-        ValidateData(medicalAppointment, ssn, doctorLicenseNumber, scheduledDateTime);
+        MedicalAppointment medicalAppointment = _findMedicalAppointment.Find(dto.Ssn, dto.ScheduledDateTime);
+        ValidateData(medicalAppointment, dto.Ssn, dto.ScheduledDateTime);
         medicalAppointment.Cancel();
         _context.Update(medicalAppointment);
         _context.SaveChanges();
     }
 
-    private static void ValidateData(MedicalAppointment medicalAppointment, string ssn, string doctorLicenseNumber, DateTime dateTime)
+    private static void ValidateData(MedicalAppointment medicalAppointment, string ssn, DateTime dateTime)
     {
         if (medicalAppointment.CancelledDateTime is not null)
         {
-            throw new CancelledMedicalAppointmentException(ssn, doctorLicenseNumber, dateTime);
+            throw new CancelledMedicalAppointmentException(ssn, dateTime);
         }
         if (medicalAppointment.FinishingDateTime is not null)
         {
-            throw new CancelledMedicalAppointmentException(ssn, doctorLicenseNumber, dateTime.ToString());
+            throw new CancelledMedicalAppointmentException(ssn, dateTime.ToString());
         }
     }
 
@@ -52,8 +52,7 @@ public class CancelMedicalAppointmentService : ICancelMedicalAppointmentService
         if (medicalAppointment.CancelledDateTime is not null)
         {
             throw new CancelledMedicalAppointmentException(
-                GetSystemUSer(medicalAppointment).Ssn, 
-                GetDoctor(medicalAppointment).LicenseNumber,
+                GetSystemUSer(medicalAppointment).Ssn,
                 medicalAppointment.ScheduledDateTime
             );
         }
@@ -62,31 +61,14 @@ public class CancelMedicalAppointmentService : ICancelMedicalAppointmentService
         {
             throw new CancelledMedicalAppointmentException(
                 GetSystemUSer(medicalAppointment).Ssn,
-                GetDoctor(medicalAppointment).LicenseNumber,
-                medicalAppointment.ScheduledDateTime
+                medicalAppointment.ScheduledDateTime.ToString()
             );
         }
     }
 
     private static SystemUser GetSystemUSer(MedicalAppointment medicalAppointment)
     {
-        if (medicalAppointment is null) throw new NullReferenceException();
-
-        Patient? patient = medicalAppointment.Patient;
-        if (patient is null) throw new NullReferenceException();
-
-        SystemUser? systemUser = patient.SystemUser;
-        if (systemUser is null) throw new NullReferenceException();
-        return systemUser;
-    }
-
-    private static Doctor GetDoctor(MedicalAppointment medicalAppointment)
-    {
-        if (medicalAppointment is null) throw new NullReferenceException();
-
-        Doctor? doctor = medicalAppointment.Doctor;
-        if (doctor is null) throw new NullReferenceException();
-        return doctor;
+        return medicalAppointment.Patient?.SystemUser ??  throw new NullReferenceException();
     }
 
 }

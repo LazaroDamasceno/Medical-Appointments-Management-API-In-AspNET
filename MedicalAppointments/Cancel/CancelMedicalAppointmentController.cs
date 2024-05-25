@@ -16,9 +16,9 @@ public class CancelMedicalAppointmentController : ControllerBase
     }
 
     [HttpPatch]
-    public IActionResult Cancel([Required, StringLength(9)] string ssn, [Required, StringLength(7)] string doctorLicenseNumber, [Required] DateTime scheduledDateTime)
+    public IActionResult Cancel([Required] CancelMedicalAppointmentDTO dto)
     {
-        _service.Cancel(ssn, doctorLicenseNumber, scheduledDateTime);
+        _service.Cancel(dto);
         return StatusCode(204);
     }
 

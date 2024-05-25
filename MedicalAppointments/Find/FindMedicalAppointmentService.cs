@@ -2,6 +2,7 @@
 using MedicalAppointmentsManagementAPI.Doctors.FindByLicenseNumber;
 using MedicalAppointmentsManagementAPI.Patients;
 using MedicalAppointmentsManagementAPI.Patients.FindBySsn;
+using System.Numerics;
 
 namespace MedicalAppointmentsManagementAPI.MedicalAppointments.Find;
 
@@ -42,12 +43,25 @@ public class FindMedicalAppointmentService : IFindMedicalAppointmentService
         return medicalAppointment;
     }
 
-    public MedicalAppointment Find(string doctorLicenseNumber, DateTime scheduledDateTime)
+    public MedicalAppointment FindByDoctor(string doctorLicenseNumber, DateTime scheduledDateTime)
     {
         Doctor doctor = _findDoctorByLicenseNumber.Find(doctorLicenseNumber);
         MedicalAppointment? medicalAppointment = _context
             .MedicalAppointments
             .First(e => e.Doctor == doctor && e.ScheduledDateTime == scheduledDateTime);
+        if (medicalAppointment == null)
+        {
+            throw new MedicalAppointmentNotFoundException(doctorLicenseNumber, scheduledDateTime);
+        }
+        return medicalAppointment;
+    }
+
+    public MedicalAppointment FindByPatient(string ssn, DateTime scheduledDateTime)
+    {
+        Patient patient = _findPatientBySsn.Find(ssn);
+        MedicalAppointment? medicalAppointment = _context
+        .MedicalAppointments
+            .First(e => e.Patient == patient && e.ScheduledDateTime == scheduledDateTime);
         if (medicalAppointment == null)
         {
             throw new MedicalAppointmentNotFoundException(doctorLicenseNumber, scheduledDateTime);

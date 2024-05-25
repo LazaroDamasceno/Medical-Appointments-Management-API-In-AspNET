@@ -13,4 +13,10 @@ public class MedicalAppointmentNotFoundException : Exception
             Medical appointment whose doctor's license number is {doctorLicenseNumber} and scheduled date is {scheduledDateTime} time was not found.
         """)
     { }
+
+    public MedicalAppointmentNotFoundException(string ssn, string scheduledDateTime) : base(
+    $"""
+            Medical appointment whose patient's SSN is {ssn} and scheduled date is {scheduledDateTime} time was not found.
+        """)
+    { }
 }
