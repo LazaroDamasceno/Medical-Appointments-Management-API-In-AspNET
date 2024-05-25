@@ -48,7 +48,12 @@ public class FindMedicalAppointmentService : IFindMedicalAppointmentService
         Doctor doctor = _findDoctorByLicenseNumber.Find(doctorLicenseNumber);
         MedicalAppointment? medicalAppointment = _context
             .MedicalAppointments
-            .First(e => e.Doctor == doctor && e.ScheduledDateTime == scheduledDateTime);
+            .First(
+                e => e.Doctor == doctor
+                && e.ScheduledDateTime == scheduledDateTime
+                && e.FinishingDateTime == null
+                && e.CancelledDateTime == null
+            );
         if (medicalAppointment == null)
         {
             throw new MedicalAppointmentNotFoundException(doctorLicenseNumber, scheduledDateTime);
@@ -61,7 +66,12 @@ public class FindMedicalAppointmentService : IFindMedicalAppointmentService
         Patient patient = _findPatientBySsn.Find(ssn);
         MedicalAppointment? medicalAppointment = _context
         .MedicalAppointments
-            .First(e => e.Patient == patient && e.ScheduledDateTime == scheduledDateTime);
+            .First(
+                e => e.Patient == patient
+                && e.ScheduledDateTime == scheduledDateTime
+                && e.FinishingDateTime == null
+                && e.CancelledDateTime == null
+            );
         if (medicalAppointment == null)
         {
             throw new MedicalAppointmentNotFoundException(ssn, scheduledDateTime);
