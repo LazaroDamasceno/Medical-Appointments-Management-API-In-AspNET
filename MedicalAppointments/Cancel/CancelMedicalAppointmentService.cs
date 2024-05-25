@@ -20,7 +20,7 @@ public class CancelMedicalAppointmentService : ICancelMedicalAppointmentService
 
     public void Cancel([Required] CancelMedicalAppointmentDTO dto)
     {
-        MedicalAppointment medicalAppointment = _findMedicalAppointment.Find(dto.Ssn, dto.ScheduledDateTime);
+        MedicalAppointment medicalAppointment = _findMedicalAppointment.FindByPatient(dto.Ssn, dto.ScheduledDateTime);
         ValidateData(medicalAppointment, dto.Ssn, dto.ScheduledDateTime);
         medicalAppointment.Cancel();
         _context.Update(medicalAppointment);
