@@ -64,7 +64,7 @@ public class FindMedicalAppointmentService : IFindMedicalAppointmentService
             .First(e => e.Patient == patient && e.ScheduledDateTime == scheduledDateTime);
         if (medicalAppointment == null)
         {
-            throw new MedicalAppointmentNotFoundException(doctorLicenseNumber, scheduledDateTime);
+            throw new MedicalAppointmentNotFoundException(ssn, scheduledDateTime);
         }
         return medicalAppointment;
     }
