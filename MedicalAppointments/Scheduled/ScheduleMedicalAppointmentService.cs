@@ -45,6 +45,17 @@ public class ScheduleMedicalAppointmentService : IScheduleMedicalAppointmentServ
         {
             throw new DuplicatedMedicalAppointmentException(dto.Ssn, dto.DoctorLicenseNumber, dto.ScheduledDateTime);
         }
+
+        doesMedicalAppointmentExist = _context
+            .MedicalAppointments
+            .Any(e => e.ScheduledDateTime == dto.ScheduledDateTime
+                 && e.CancelledDateTime == null
+                 && e.FinishingDateTime == null
+            );
+        if (doesMedicalAppointmentExist)
+        {
+            throw new EqualDateTimesException(dto.ScheduledDateTime);
+        }
     }
 
 }
