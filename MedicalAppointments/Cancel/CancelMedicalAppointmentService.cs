@@ -2,9 +2,7 @@
 using MedicalAppointmentsManagementAPI.MedicalAppointments.Find;
 using MedicalAppointmentsManagementAPI.Patients;
 using MedicalAppointmentsManagementAPI.SystemUsers;
-using System;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.Intrinsics.X86;
 
 namespace MedicalAppointmentsManagementAPI.MedicalAppointments.Cancel;
 
