@@ -17,7 +17,7 @@ public class AddMedicalNoteService : IAddMedicalNoteService
 
     public void AddMedicalNoted([Required] MedicalNoteDTO dto)
     {
-        MedicalAppointment medicalAppointment = _findMedicalAppointment.Find(dto.DoctorLicenseNumber, dto.ScheduledDateTime);
+        MedicalAppointment medicalAppointment = _findMedicalAppointment.FindByDoctor(dto.DoctorLicenseNumber, dto.ScheduledDateTime);
         if (medicalAppointment.MedicalNote is not "") throw new FinishedMedicalAppointmentException(dto.DoctorLicenseNumber, dto.ScheduledDateTime);
         medicalAppointment.AddMedicalNote(dto.Note);
         medicalAppointment.Finish();
