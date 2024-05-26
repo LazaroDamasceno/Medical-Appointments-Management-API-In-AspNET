@@ -1,4 +1,5 @@
-﻿using MedicalAppointmentsManagementAPI.Patients.FindBySsn;
+﻿using MedicalAppointmentsManagementAPI.Doctors;
+using MedicalAppointmentsManagementAPI.Patients.FindBySsn;
 using MedicalAppointmentsManagementAPI.SystemUsers;
 using System.ComponentModel.DataAnnotations;
 
@@ -18,17 +19,13 @@ public class UpdatePatientService : IUpdatePatientService
 
     public void Update([Required] UpdatePatientDTO dto)
     {
-        Patient patient = _findPatientBySsn.Find(dto.SystemUser.Ssn);
+        Patient patient = _findPatientBySsn.Find(dto.Ssn);
         patient.Update(dto.Address);
         _context.Update(patient);
-        SystemUser? systemUser = GetSystemUser(patient);
+        SystemUser systemUser = _context.SystemUsers.Find(patient.SystemUserId) ?? throw new NullReferenceException();
+        systemUser.Update(dto.SystemUser);
         _context.Update(systemUser);
         _context.SaveChanges();
-    }
-
-    private static SystemUser GetSystemUser(Patient patient)
-    {
-        return patient.SystemUser ?? throw new NullReferenceException();
     }
 
 }
