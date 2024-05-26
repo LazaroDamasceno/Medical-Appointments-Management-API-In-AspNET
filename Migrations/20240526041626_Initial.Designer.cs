@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalAppointmentsManagementAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240526030514_Initial")]
+    [Migration("20240526041626_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
