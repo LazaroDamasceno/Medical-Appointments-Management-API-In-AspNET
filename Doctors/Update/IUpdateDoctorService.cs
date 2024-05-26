@@ -1,5 +1,4 @@
-﻿using MedicalAppointmentsManagementAPI.SystemUsers.Update;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MedicalAppointmentsManagementAPI.Doctors.Update;
 
