@@ -31,4 +31,6 @@ public class Patient
         };
     }
 
+    public void Update(string address) => Address = address;
+
 }

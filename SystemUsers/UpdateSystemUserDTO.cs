@@ -2,7 +2,11 @@
 
 namespace MedicalAppointmentsManagementAPI.SystemUsers;
 
-public record RegisterSystemUserDTO(
+public record UpdateSystemUserDTO(
+    [Required]
+    [StringLength(9)]
+    string Ssn,
+
     [Required]
     string Name,
 
@@ -20,4 +24,6 @@ public record RegisterSystemUserDTO(
     [Required]
     [StringLength(1)]
     string Gender
-) { }
+)
+{
+}
