@@ -10,6 +10,10 @@ public record RegisterSystemUserDTO(
     DateOnly Birthday,
 
     [Required]
+    [StringLength(9)]
+    string Ssn,
+
+    [Required]
     [EmailAddress]
     string Email,
 
