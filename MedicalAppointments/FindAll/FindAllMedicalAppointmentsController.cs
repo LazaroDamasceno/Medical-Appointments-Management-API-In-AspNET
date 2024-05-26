@@ -3,7 +3,7 @@
 namespace MedicalAppointmentsManagementAPI.MedicalAppointments.FindAll;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/v1/medical-appointments")]
 public class FindAllMedicalAppointmentsController : ControllerBase
 {
 
