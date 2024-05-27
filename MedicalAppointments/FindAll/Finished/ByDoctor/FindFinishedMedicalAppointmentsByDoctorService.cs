@@ -28,8 +28,8 @@ public class FindFinishedMedicalAppointmentsByDoctorService : IFindFinishedMedic
             .Include(e => e.Patient.SystemUser)
             .Include(e => e.Doctor.SystemUser)
             .Where(
-                e => e.FinishingDateTime <= dateTimesDTO.FirstDateTime
-                && e.FinishingDateTime >= dateTimesDTO.LastDateTime
+                e => e.ScheduledDateTime <= dateTimesDTO.FirstDateTime
+                && e.ScheduledDateTime >= dateTimesDTO.LastDateTime
                 && e.Doctor == doctor
             )];
     }
