@@ -30,6 +30,7 @@ public class FindFinishedMedicalAppointmentsByDoctorService : IFindFinishedMedic
             .Where(
                 e => e.ScheduledDateTime <= dateTimesDTO.FirstDateTime
                 && e.ScheduledDateTime >= dateTimesDTO.LastDateTime
+                && e.FinishingDateTime != null
                 && e.Doctor == doctor
             )];
     }
