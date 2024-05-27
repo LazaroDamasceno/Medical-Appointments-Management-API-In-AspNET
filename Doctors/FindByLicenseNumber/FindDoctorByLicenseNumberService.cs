@@ -1,4 +1,4 @@
-﻿using MedicalAppointmentsManagementAPI.Doctorss.FindByLicenseNumber;
+﻿using MedicalAppointmentsManagementAPI.Doctors.FindByLicenseNumber;
 using System.ComponentModel.DataAnnotations;
 
 namespace MedicalAppointmentsManagementAPI.Doctors.FindByLicenseNumber;

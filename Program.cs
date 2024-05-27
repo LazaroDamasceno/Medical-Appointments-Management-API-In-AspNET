@@ -10,6 +10,8 @@ using MedicalAppointmentsManagementAPI.MedicalAppointments.Find;
 using MedicalAppointmentsManagementAPI.MedicalAppointments.FindAll;
 using MedicalAppointmentsManagementAPI.MedicalAppointments.FindAll.Cancelled;
 using MedicalAppointmentsManagementAPI.MedicalAppointments.FindAll.Cancelled.ByPatient;
+using MedicalAppointmentsManagementAPI.MedicalAppointments.FindAll.Finished.ByDoctor;
+using MedicalAppointmentsManagementAPI.MedicalAppointments.FindAll.Finished.ByPatient;
 using MedicalAppointmentsManagementAPI.MedicalAppointments.FindAll.Scheduled.ByDoctor;
 using MedicalAppointmentsManagementAPI.MedicalAppointments.FindAll.Scheduled.ByPatient;
 using MedicalAppointmentsManagementAPI.MedicalAppointments.Reschedule;
@@ -47,6 +49,8 @@ builder.Services.AddScoped<IFindCancelledMedicalAppointmentsByDoctorService, Fin
 builder.Services.AddScoped<IFindCancelledMedicalAppointmentsByPatientService, FindCancelledMedicalAppointmentsByPatientService>();
 builder.Services.AddScoped<IFindScheduledMedicalAppointmentsByPatientService, FindScheduledMedicalAppointmentsByPatientService>();
 builder.Services.AddScoped<IFindScheduledMedicalAppointmentsByDoctorService, FindScheduledMedicalAppointmentsByDoctorService>();
+builder.Services.AddScoped<IFindFinishedMedicalAppointmentsByPatientService, FindFinishedMedicalAppointmentsByPatientService>();
+builder.Services.AddScoped<IFindFinishedMedicalAppointmentsByDoctorService, FindFinishedMedicalAppointmentsByDoctorService>();
 
 var app = builder.Build();
 
