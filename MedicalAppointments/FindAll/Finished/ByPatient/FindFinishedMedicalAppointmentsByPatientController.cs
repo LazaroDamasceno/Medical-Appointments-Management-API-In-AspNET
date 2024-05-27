@@ -10,7 +10,7 @@ public class FindFinishedMedicalAppointmentsByPatientController : ControllerBase
 
     private readonly IFindFinishedMedicalAppointmentsByPatientService _service;
 
-    [HttpGet("ssn")]
+    [HttpGet("{ssn}")]
     public IActionResult Find([Required, StringLength(9)] string ssn, [Required, FromBody] BetweenDateTimesDTO dateTimesDTO)
     {
         return Ok(_service.Find(ssn, dateTimesDTO));

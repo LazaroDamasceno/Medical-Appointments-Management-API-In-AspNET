@@ -15,7 +15,7 @@ public class FindScheduledMedicalAppointmentsByPatientController : ControllerBas
         _service = service;
     }
 
-    [HttpGet("ssn")]
+    [HttpGet("{ssn}")]
     public IActionResult Find([Required, StringLength(9)] string ssn, [Required, FromBody] BetweenDateTimesDTO dateTimesDTO)
     {
         return Ok(_service.Find(ssn, dateTimesDTO));

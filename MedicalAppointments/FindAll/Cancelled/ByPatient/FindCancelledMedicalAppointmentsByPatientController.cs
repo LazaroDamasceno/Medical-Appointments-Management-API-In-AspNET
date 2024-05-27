@@ -15,7 +15,7 @@ public class FindCancelledMedicalAppointmentsByPatientController : ControllerBas
         _service = service;
     }
 
-    [HttpGet("ssn")]
+    [HttpGet("{ssn}")]
     public IActionResult Find([Required, StringLength(9)] string ssn)
     {
         return Ok(_service.Find(ssn));

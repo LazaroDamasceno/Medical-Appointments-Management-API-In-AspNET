@@ -15,7 +15,7 @@ public class FindFinishedMedicalAppointmentsByDoctorController : ControllerBase
         _service = service;
     }
 
-    [HttpGet("doctorLicenseNumber")]
+    [HttpGet("{doctorLicenseNumber}")]
     public IActionResult Find([Required, StringLength(7)] string doctorLicenseNumber, [Required, FromBody] BetweenDateTimesDTO dateTimesDTO)
     {
         return Ok(_service.Find(doctorLicenseNumber, dateTimesDTO));
