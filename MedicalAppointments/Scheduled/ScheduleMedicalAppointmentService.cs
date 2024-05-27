@@ -56,6 +56,16 @@ public class ScheduleMedicalAppointmentService : IScheduleMedicalAppointmentServ
         {
             throw new EqualDateTimesException(dto.ScheduledDateTime);
         }
+
+        int day = DateTime.Now.Day;
+        int month = DateTime.Now.Month;
+        int year = DateTime.Now.Year;
+        DateTime today = new(year, month, day, 0, 0, 0);
+        bool isSchedulingInTheDateTimePresentOrPast = today <= dto.ScheduledDateTime;
+        if (isSchedulingInTheDateTimePresentOrPast)
+        {
+            throw new PastOrPastSchedulingDateTimeException(dto.ScheduledDateTime, today);
+        }
     }
 
 }
