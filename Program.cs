@@ -14,6 +14,7 @@ using MedicalAppointmentsManagementAPI.MedicalAppointments.FindAll.Finished.ByDo
 using MedicalAppointmentsManagementAPI.MedicalAppointments.FindAll.Finished.ByPatient;
 using MedicalAppointmentsManagementAPI.MedicalAppointments.FindAll.Scheduled.ByDoctor;
 using MedicalAppointmentsManagementAPI.MedicalAppointments.FindAll.Scheduled.ByPatient;
+using MedicalAppointmentsManagementAPI.MedicalAppointments.FindAll.ValidateDateTimes;
 using MedicalAppointmentsManagementAPI.MedicalAppointments.Reschedule;
 using MedicalAppointmentsManagementAPI.MedicalAppointments.Scheduled;
 using MedicalAppointmentsManagementAPI.Patients.FindAll;
@@ -51,6 +52,7 @@ builder.Services.AddScoped<IFindScheduledMedicalAppointmentsByPatientService, Fi
 builder.Services.AddScoped<IFindScheduledMedicalAppointmentsByDoctorService, FindScheduledMedicalAppointmentsByDoctorService>();
 builder.Services.AddScoped<IFindFinishedMedicalAppointmentsByPatientService, FindFinishedMedicalAppointmentsByPatientService>();
 builder.Services.AddScoped<IFindFinishedMedicalAppointmentsByDoctorService, FindFinishedMedicalAppointmentsByDoctorService>();
+builder.Services.AddScoped<IValidateDateTimesService, ValidateDateTimesService>();
 
 var app = builder.Build();
 
