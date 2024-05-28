@@ -27,7 +27,7 @@ public class RescheduleMedicalAppointmentService : IRescheduleMedicalAppointment
         ValidateData(oldMedicalAppointment, dto);
         oldMedicalAppointment.Cancel();
         _context.Update(oldMedicalAppointment);
-        Patient? patient = _context.Patients.Find(oldMedicalAppointment.PatientId) ?? throw new NullReferenceException();
+        Patient? patient = _context.Patients.Find(oldMedicalAppointment.PatientId);
         Doctor? doctor = _findDoctorByLicenseNumber.Find(dto.DoctorLicenseNumber);
         MedicalAppointment? newMedicalAppointment = MedicalAppointment.CreateInstance(patient, doctor, dto.NewScheduledDateTime);
         _context.Add(newMedicalAppointment);

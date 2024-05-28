@@ -22,7 +22,7 @@ public class UpdatePatientService : IUpdatePatientService
         Patient patient = _findPatientBySsn.Find(dto.Ssn);
         patient.Update(dto.Address);
         _context.Update(patient);
-        SystemUser systemUser = _context.SystemUsers.Find(patient.SystemUserId) ?? throw new NullReferenceException();
+        SystemUser? systemUser = _context.SystemUsers.Find(patient.SystemUserId);
         systemUser.Update(dto.SystemUser);
         _context.Update(systemUser);
         _context.SaveChanges();

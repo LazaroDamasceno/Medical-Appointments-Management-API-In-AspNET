@@ -19,7 +19,7 @@ public class UpdateDoctorService : IUpdateDoctorService
     public void Update([Required] UpdateDoctorDTO dto)
     {
         Doctor doctor = _findDoctorByLicenseNumber.Find(dto.DoctorLicenseNumber);
-        SystemUser systemUser = _context.SystemUsers.Find(doctor.SystemUserId) ?? throw new NullReferenceException();
+        SystemUser? systemUser = _context.SystemUsers.Find(doctor.SystemUserId);
         systemUser.Update(dto.SystemUserDTO);
         _context.Update(systemUser);
         _context.SaveChanges();
