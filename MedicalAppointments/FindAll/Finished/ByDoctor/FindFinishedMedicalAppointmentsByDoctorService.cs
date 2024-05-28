@@ -1,5 +1,6 @@
 ﻿using MedicalAppointmentsManagementAPI.Doctors;
 using MedicalAppointmentsManagementAPI.Doctors.FindByLicenseNumber;
+using MedicalAppointmentsManagementAPI.MedicalAppointments.FindAll.ValidateDateTimes;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,15 +11,18 @@ public class FindFinishedMedicalAppointmentsByDoctorService : IFindFinishedMedic
 
     private readonly AppDbContext _context;
     private readonly IFindDoctorByLicenseNumberService _findDoctorByLicenseNumber;
+    private readonly IValidateDateTimesService _validateDateTimes;
 
-    public FindFinishedMedicalAppointmentsByDoctorService(AppDbContext context, IFindDoctorByLicenseNumberService findDoctorByLicenseNumber)
+    public FindFinishedMedicalAppointmentsByDoctorService(AppDbContext context, IFindDoctorByLicenseNumberService findDoctorByLicenseNumber, IValidateDateTimesService validateDateTimes)
     {
         _context = context;
         _findDoctorByLicenseNumber = findDoctorByLicenseNumber;
+        _validateDateTimes = validateDateTimes;
     }
 
     public List<MedicalAppointment> Find([Required, StringLength(7)] string doctorLicenseNumber, [Required] BetweenDateTimesDTO dateTimesDTO)
     {
+        _validateDateTimes.ValidateDateTimes(dateTimesDTO);
         Doctor doctor = _findDoctorByLicenseNumber.Find(doctorLicenseNumber);
         return [
             .. _context
