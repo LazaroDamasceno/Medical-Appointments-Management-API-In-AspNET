@@ -68,8 +68,8 @@ public class ScheduleMedicalAppointmentService : IScheduleMedicalAppointmentServ
         int month = DateTime.Now.Month;
         int year = DateTime.Now.Year;
         DateTime today = new(year, month, day, 0, 0, 0);
-        bool isSchedulingInTheDateTimePresentOrPast = today <= dto.ScheduledDateTime;
-        if (isSchedulingInTheDateTimePresentOrPast)
+        bool isSchedulingDateTimeInThePresentOrPast = today <= dto.ScheduledDateTime;
+        if (isSchedulingDateTimeInThePresentOrPast)
         {
             throw new PastOrPastSchedulingDateTimeException(dto.ScheduledDateTime, today);
         }
