@@ -1,5 +1,6 @@
 ﻿using MedicalAppointmentsManagementAPI.MedicalAppointments.Find;
 using System.ComponentModel.DataAnnotations;
+using System.Transactions;
 
 namespace MedicalAppointmentsManagementAPI.MedicalAppointments.AddMedicalNoted;
 
@@ -17,12 +18,14 @@ public class AddMedicalNoteService : IAddMedicalNoteService
 
     public void AddMedicalNoted([Required] MedicalNoteDTO dto)
     {
+        var transaction = new TransactionScope();
         MedicalAppointment medicalAppointment = _findMedicalAppointment.FindByDoctor(dto.DoctorLicenseNumber, dto.ScheduledDateTime);
         if (medicalAppointment.MedicalNote is not "") throw new FinishedMedicalAppointmentException(dto.DoctorLicenseNumber, dto.ScheduledDateTime);
         medicalAppointment.AddMedicalNote(dto.Note);
         medicalAppointment.Finish();
         _context.Update(medicalAppointment);
         _context.SaveChanges();
+        transaction.Complete();
     }
 
 }

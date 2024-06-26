@@ -1,5 +1,6 @@
 ﻿using MedicalAppointmentsManagementAPI.SystemUsers;
 using System.ComponentModel.DataAnnotations;
+using System.Transactions;
 
 namespace MedicalAppointmentsManagementAPI.Patients.Register;
 
@@ -15,6 +16,7 @@ public class SelfRegisterPatientService : ISelfRegisterPatientService
 
     public void SelfRegister([Required] SelfRegisterPatientDTO dto)
     {
+        var transaction = new TransactionScope();
         IsPatientAlreadyRegistered(dto.SystemUserDTO.Ssn);
         SystemUser systemUser  = new SystemUserBuilder()
             .FromDTO(dto.SystemUserDTO)
@@ -26,6 +28,7 @@ public class SelfRegisterPatientService : ISelfRegisterPatientService
             .Builder();
         _context.Add(patient);
         _context.SaveChanges();
+        transaction.Complete();
     }
 
     private void IsPatientAlreadyRegistered(string ssn)

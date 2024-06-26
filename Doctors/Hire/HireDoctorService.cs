@@ -1,5 +1,6 @@
 ﻿using MedicalAppointmentsManagementAPI.SystemUsers;
 using System.ComponentModel.DataAnnotations;
+using System.Transactions;
 
 namespace MedicalAppointmentsManagementAPI.Doctors.Hire;
 
@@ -15,6 +16,7 @@ public class HireDoctorService : IHireDoctorService
 
     public void Hire([Required] HireDoctorDTO dto)
     {
+        var transaction = new TransactionScope();
         ValidateData(dto.DoctorLicenseNumber, dto.SystemUserDTO.Ssn);
         SystemUser systemUser = new SystemUserBuilder()
             .FromDTO(dto.SystemUserDTO)
@@ -26,6 +28,7 @@ public class HireDoctorService : IHireDoctorService
             .Build();
         _context.Add(doctor);
         _context.SaveChanges();
+        transaction.Complete();
     }
 
     private void ValidateData(string doctorLicenseNumber, string ssn)

@@ -4,6 +4,7 @@ using MedicalAppointmentsManagementAPI.MedicalAppointments.Cancel;
 using MedicalAppointmentsManagementAPI.MedicalAppointments.Find;
 using MedicalAppointmentsManagementAPI.Patients;
 using System.ComponentModel.DataAnnotations;
+using System.Transactions;
 
 namespace MedicalAppointmentsManagementAPI.MedicalAppointments.Reschedule;
 
@@ -23,6 +24,7 @@ public class RescheduleMedicalAppointmentService : IRescheduleMedicalAppointment
 
     public void Reschedule([Required] RescheduleMedicalAppointmentDTO dto)
     {
+        var transaction = new TransactionScope();
         MedicalAppointment oldMedicalAppointment = _findMedicalAppointmentService
             .FindByDoctor(dto.DoctorLicenseNumber, dto.OldScheduledDateTime);
         ValidateData(oldMedicalAppointment, dto);
@@ -37,6 +39,7 @@ public class RescheduleMedicalAppointmentService : IRescheduleMedicalAppointment
             .Build();
         _context.Add(newMedicalAppointment);
         _context.SaveChanges();
+        transaction.Complete();
     }
 
     private static void ValidateData(MedicalAppointment medicalAppointment, RescheduleMedicalAppointmentDTO dto)

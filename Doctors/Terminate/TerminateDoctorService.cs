@@ -1,5 +1,6 @@
 ﻿using MedicalAppointmentsManagementAPI.Doctors.FindByLicenseNumber;
 using System.ComponentModel.DataAnnotations;
+using System.Transactions;
 
 namespace MedicalAppointmentsManagementAPI.Doctors.Terminate;
 
@@ -17,6 +18,7 @@ public class TerminateDoctorService : ITerminateDoctorService
 
     public void Terminate([Required, StringLength(7)] string doctorLicenseNumber)
     {
+        var transaction = new TransactionScope();
         Doctor doctor = _findDoctorByLicenseNumberService.Find(doctorLicenseNumber);
         if (doctor.TerminationDateTime is not null) 
         {
@@ -25,6 +27,7 @@ public class TerminateDoctorService : ITerminateDoctorService
         doctor.Terminate();
         _context.Update(doctor);
         _context.SaveChanges();
+        transaction.Complete();
     }
 
 }

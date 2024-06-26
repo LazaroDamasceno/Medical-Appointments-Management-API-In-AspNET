@@ -3,6 +3,7 @@ using MedicalAppointmentsManagementAPI.Doctors.FindByLicenseNumber;
 using MedicalAppointmentsManagementAPI.Patients;
 using MedicalAppointmentsManagementAPI.Patients.FindBySsn;
 using System.ComponentModel.DataAnnotations;
+using System.Transactions;
 
 namespace MedicalAppointmentsManagementAPI.MedicalAppointments.Scheduled;
 
@@ -22,6 +23,7 @@ public class ScheduleMedicalAppointmentService : IScheduleMedicalAppointmentServ
 
     public void Schedule([Required] ScheduleMedicalAppointmentDTO dto)
     {
+        var transaction = new TransactionScope();
         Patient patient = _findPatientBySsn.Find(dto.Ssn);
         Doctor doctor = _findDoctorByLicenseNumber.Find(dto.DoctorLicenseNumber);
         ValidateData(dto, patient, doctor);
@@ -32,6 +34,7 @@ public class ScheduleMedicalAppointmentService : IScheduleMedicalAppointmentServ
             .Build();
         _context.Add(medicalAppointment);
         _context.SaveChanges();
+        transaction.Complete();
     }
 
     private void ValidateData(ScheduleMedicalAppointmentDTO dto, Patient patient, Doctor doctor)

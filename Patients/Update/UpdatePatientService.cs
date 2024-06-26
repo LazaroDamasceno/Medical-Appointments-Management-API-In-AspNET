@@ -2,6 +2,7 @@
 using MedicalAppointmentsManagementAPI.Patients.FindBySsn;
 using MedicalAppointmentsManagementAPI.SystemUsers;
 using System.ComponentModel.DataAnnotations;
+using System.Transactions;
 
 namespace MedicalAppointmentsManagementAPI.Patients.Update;
 
@@ -19,6 +20,7 @@ public class UpdatePatientService : IUpdatePatientService
 
     public void Update([Required] UpdatePatientDTO dto)
     {
+        var transaction = new TransactionScope();
         Patient patient = _findPatientBySsn.Find(dto.Ssn);
         patient.Update(dto.Address);
         _context.Update(patient);
@@ -26,6 +28,7 @@ public class UpdatePatientService : IUpdatePatientService
         systemUser.Update(dto.SystemUser);
         _context.Update(systemUser);
         _context.SaveChanges();
+        transaction.Complete();
     }
 
 }
