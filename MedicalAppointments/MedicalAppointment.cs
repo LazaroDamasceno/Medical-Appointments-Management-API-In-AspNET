@@ -10,13 +10,13 @@ public class MedicalAppointment
     [Key]
     public Guid Id { get; set; } = Guid.NewGuid();
 
-    public DateTime ScheduledDateTime { get; set; }
+    public required DateTime ScheduledDateTime { get; set; }
 
     public DateTime? CancelledDateTime { get; set; }
 
     public DateTime? FinishingDateTime { get; set; }
 
-    public string MedicalNote { get; set; } = "";
+    public string? MedicalNote { get; set; }
 
     public Patient? Patient { get; set; }
 

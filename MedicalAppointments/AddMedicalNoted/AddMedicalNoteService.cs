@@ -20,7 +20,7 @@ public class AddMedicalNoteService : IAddMedicalNoteService
     {
         var transaction = new TransactionScope();
         MedicalAppointment medicalAppointment = _findMedicalAppointment.FindByDoctor(dto.DoctorLicenseNumber, dto.ScheduledDateTime);
-        if (medicalAppointment.MedicalNote is not "") throw new FinishedMedicalAppointmentException(dto.DoctorLicenseNumber, dto.ScheduledDateTime);
+        if (medicalAppointment.MedicalNote is not null) throw new FinishedMedicalAppointmentException(dto.DoctorLicenseNumber, dto.ScheduledDateTime);
         medicalAppointment.AddMedicalNote(dto.Note);
         medicalAppointment.Finish();
         _context.Update(medicalAppointment);

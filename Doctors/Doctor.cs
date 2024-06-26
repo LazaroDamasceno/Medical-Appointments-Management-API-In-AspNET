@@ -12,7 +12,7 @@ public class Doctor
     [Key]
     public Guid Id { get; set; } = Guid.NewGuid();
 
-    public string LicenseNumber { get; set; }
+    public required string LicenseNumber { get; set; }
 
     public DateTime HiringDateTime { get; set; } = DateTime.Now;
 

@@ -11,28 +11,21 @@ public class SystemUser
     [Key]
     public Guid Id { get; set; } = Guid.NewGuid();
 
-    [Required]
-    public string FirstName { get; set; }
+    public required string FirstName { get; set; }
 
-    public string MiddleName { get; set; }
+    public string? MiddleName { get; set; }
 
-    [Required]
-    public string LastName { get; set; }
+    public required string LastName { get; set; }
 
-    [Required]
-    public DateOnly Birthday { get; set; }
+    public required DateOnly Birthday { get; set; }
 
-    [Required]
-    public string Ssn { get; set; }
+    public required string Ssn { get; set; }
 
-    [Required]
-    public string Email { get; set; }
+    public required string Email { get; set; }
 
-    [Required]
-    public string PhoneNumber { get; set; }
+    public required string PhoneNumber { get; set; }
 
-    [Required]
-    public string Gender { get; set; }
+    public required string Gender { get; set; }
 
     [JsonIgnore]
     public Patient? Patient { get; set; }
