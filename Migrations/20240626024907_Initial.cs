@@ -16,7 +16,10 @@ namespace MedicalAppointmentsManagementAPI.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    FirstName = table.Column<string>(type: "TEXT", nullable: false),
+                    MiddleName = table.Column<string>(type: "TEXT", nullable: false),
+                    LastName = table.Column<string>(type: "TEXT", nullable: false),
+                    Birthday = table.Column<DateOnly>(type: "TEXT", nullable: false),
                     Ssn = table.Column<string>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: false),
                     PhoneNumber = table.Column<string>(type: "TEXT", nullable: false),
@@ -53,7 +56,7 @@ namespace MedicalAppointmentsManagementAPI.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Address = table.Column<string>(type: "TEXT", nullable: false),
-                    SystemUserId = table.Column<Guid>(type: "TEXT", nullable: true)
+                    SystemUserId = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,7 +65,8 @@ namespace MedicalAppointmentsManagementAPI.Migrations
                         name: "FK_Patients_SystemUsers_SystemUserId",
                         column: x => x.SystemUserId,
                         principalTable: "SystemUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

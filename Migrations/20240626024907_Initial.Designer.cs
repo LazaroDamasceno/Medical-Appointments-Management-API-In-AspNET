@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalAppointmentsManagementAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240526041626_Initial")]
+    [Migration("20240626024907_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -91,7 +91,7 @@ namespace MedicalAppointmentsManagementAPI.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("SystemUserId")
+                    b.Property<Guid>("SystemUserId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -108,7 +108,14 @@ namespace MedicalAppointmentsManagementAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<DateOnly>("Birthday")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -116,7 +123,11 @@ namespace MedicalAppointmentsManagementAPI.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MiddleName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -161,7 +172,9 @@ namespace MedicalAppointmentsManagementAPI.Migrations
                 {
                     b.HasOne("MedicalAppointmentsManagementAPI.SystemUsers.SystemUser", "SystemUser")
                         .WithOne("Patient")
-                        .HasForeignKey("MedicalAppointmentsManagementAPI.Patients.Patient", "SystemUserId");
+                        .HasForeignKey("MedicalAppointmentsManagementAPI.Patients.Patient", "SystemUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("SystemUser");
                 });

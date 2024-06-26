@@ -4,7 +4,12 @@ namespace MedicalAppointmentsManagementAPI.SystemUsers;
 
 public record RegisterSystemUserDTO(
     [Required]
-    string Name,
+    string FirstName,
+
+    string MiddleName,
+
+    [Required]
+    string LastName,
 
     [Required]
     DateOnly Birthday,

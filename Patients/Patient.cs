@@ -12,24 +12,15 @@ public class Patient
     [Key]
     public Guid Id { get; set; } = Guid.NewGuid();
 
-    public string Address { get; set; } = "";
+    public string Address { get; set; }
 
     public SystemUser? SystemUser { get; set; }
 
     [ForeignKey("SystemUser")]
-    public Guid? SystemUserId { get; set; }
+    public Guid SystemUserId { get; set; }
 
     [JsonIgnore]
     public List<MedicalAppointment> MedicalAppointments { get; set; } = [];
-
-    public static Patient CreateInstance(string address, SystemUser systemUser)
-    {
-        return new()
-        {
-            Address = address,
-            SystemUser = systemUser
-        };
-    }
 
     public void Update(string address) => Address = address;
 

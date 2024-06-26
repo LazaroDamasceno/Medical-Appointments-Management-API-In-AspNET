@@ -15,15 +15,25 @@ public class SelfRegisterPatientService : ISelfRegisterPatientService
 
     public void SelfRegister([Required] SelfRegisterPatientDTO dto)
     {
-        if (_context.SystemUsers.Any(e => e.Ssn == dto.SystemUserDTO.Ssn)) 
-        {
-            throw new DuplicatedPatientException(dto.SystemUserDTO.Ssn);
-        }
-        SystemUser systemUser  = SystemUser.CreateInstance(dto.SystemUserDTO);
+        IsPatientAlreadyRegistered(dto.SystemUserDTO.Ssn);
+        SystemUser systemUser  = new SystemUserBuilder()
+            .FromDTO(dto.SystemUserDTO)
+            .Build();
         _context.Add(systemUser);
-        Patient patient = Patient.CreateInstance(dto.Address, systemUser);
+        Patient patient = new PatientBuilder()
+            .Address(dto.Address)
+            .SystemUser(systemUser)
+            .Builder();
         _context.Add(patient);
         _context.SaveChanges();
+    }
+
+    private void IsPatientAlreadyRegistered(string ssn)
+    {
+        if (_context.SystemUsers.Any(e => e.Ssn == ssn))
+        {
+            throw new DuplicatedPatientException(ssn);
+        }
     }
 
 }

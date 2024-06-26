@@ -12,7 +12,7 @@ public class Doctor
     [Key]
     public Guid Id { get; set; } = Guid.NewGuid();
 
-    public string LicenseNumber { get; set; } = "";
+    public string LicenseNumber { get; set; }
 
     public DateTime HiringDateTime { get; set; } = DateTime.Now;
 
@@ -25,15 +25,6 @@ public class Doctor
 
     [JsonIgnore]
     public List<MedicalAppointment> MedicalAppointments { get; set; } = [];
-
-    public static Doctor CreateInstance(string LicenseNumber, SystemUser systemUser)
-    {
-        return new()
-        {
-            LicenseNumber = LicenseNumber,
-            SystemUser = systemUser
-        };
-    }
 
     public void Terminate() => TerminationDateTime = DateTime.Now;
 

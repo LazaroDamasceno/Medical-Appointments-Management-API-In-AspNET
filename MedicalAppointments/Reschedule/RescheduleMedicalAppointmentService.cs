@@ -23,13 +23,18 @@ public class RescheduleMedicalAppointmentService : IRescheduleMedicalAppointment
 
     public void Reschedule([Required] RescheduleMedicalAppointmentDTO dto)
     {
-        MedicalAppointment oldMedicalAppointment = _findMedicalAppointmentService.FindByDoctor(dto.DoctorLicenseNumber, dto.OldScheduledDateTime);
+        MedicalAppointment oldMedicalAppointment = _findMedicalAppointmentService
+            .FindByDoctor(dto.DoctorLicenseNumber, dto.OldScheduledDateTime);
         ValidateData(oldMedicalAppointment, dto);
         oldMedicalAppointment.Cancel();
         _context.Update(oldMedicalAppointment);
         Patient? patient = _context.Patients.Find(oldMedicalAppointment.PatientId);
         Doctor? doctor = _findDoctorByLicenseNumber.Find(dto.DoctorLicenseNumber);
-        MedicalAppointment? newMedicalAppointment = MedicalAppointment.CreateInstance(patient, doctor, dto.NewScheduledDateTime);
+        MedicalAppointment? newMedicalAppointment = new MedicalAppointmentBuilder()
+            .Doctor(doctor)
+            .Patient(patient)
+            .ScheduledDateTime(dto.NewScheduledDateTime)
+            .Build();
         _context.Add(newMedicalAppointment);
         _context.SaveChanges();
     }

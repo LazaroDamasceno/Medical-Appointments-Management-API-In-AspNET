@@ -26,16 +26,6 @@ public class MedicalAppointment
 
     public Guid? DoctorId { get; set; }
 
-    public static MedicalAppointment CreateInstance(Patient patient, Doctor doctor, DateTime scheduledDateTime)
-    {
-        return new()
-        {
-            Patient = patient,
-            Doctor = doctor,
-            ScheduledDateTime = scheduledDateTime
-        };
-    }
-
     public void Cancel() => CancelledDateTime = DateTime.Now;
 
     public void AddMedicalNote(string note) => MedicalNote = note;

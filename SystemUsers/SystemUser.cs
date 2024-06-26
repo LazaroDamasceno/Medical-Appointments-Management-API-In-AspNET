@@ -11,17 +11,28 @@ public class SystemUser
     [Key]
     public Guid Id { get; set; } = Guid.NewGuid();
 
-    public string Name { get; set; } = "";
+    [Required]
+    public string FirstName { get; set; }
 
-    public DateOnly Birthday;
+    public string MiddleName { get; set; }
 
-    public string Ssn { get; set; } = "";
+    [Required]
+    public string LastName { get; set; }
 
-    public string Email { get; set; } = "";
+    [Required]
+    public DateOnly Birthday { get; set; }
 
-    public string PhoneNumber { get; set; } = "";
+    [Required]
+    public string Ssn { get; set; }
 
-    public string Gender { get; set; } = "";
+    [Required]
+    public string Email { get; set; }
+
+    [Required]
+    public string PhoneNumber { get; set; }
+
+    [Required]
+    public string Gender { get; set; }
 
     [JsonIgnore]
     public Patient? Patient { get; set; }
@@ -29,22 +40,20 @@ public class SystemUser
     [JsonIgnore]
     public Doctor? Doctor { get; set; }
 
-    public static SystemUser CreateInstance(RegisterSystemUserDTO dto)
+    public string FullName()
     {
-        return new()
+        if (MiddleName == null)
         {
-            Name = dto.Name,
-            Birthday = dto.Birthday,
-            Ssn = dto.Ssn,
-            Email = dto.Email,
-            PhoneNumber = dto.PhoneNumber,
-            Gender = dto.Gender,
-        };
+            return $"{FirstName} ${LastName}";
+        }
+        return $"{FirstName} ${MiddleName} ${LastName}";
     }
 
     public void Update(UpdateSystemUserDTO dto)
     {
-        Name = dto.Name;
+        FirstName = dto.FirstName;
+        MiddleName = dto.MiddleName;
+        LastName = dto.LastName;
         Birthday = dto.Birthday;
         Email = dto.Email;
         PhoneNumber = dto.PhoneNumber;

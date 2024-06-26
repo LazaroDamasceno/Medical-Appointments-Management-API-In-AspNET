@@ -16,9 +16,14 @@ public class HireDoctorService : IHireDoctorService
     public void Hire([Required] HireDoctorDTO dto)
     {
         ValidateData(dto.DoctorLicenseNumber, dto.SystemUserDTO.Ssn);
-        SystemUser systemUser = SystemUser.CreateInstance(dto.SystemUserDTO); ;
+        SystemUser systemUser = new SystemUserBuilder()
+            .FromDTO(dto.SystemUserDTO)
+            .Build();
         _context.Add(systemUser);
-        Doctor doctor = Doctor.CreateInstance(dto.DoctorLicenseNumber, systemUser);
+        Doctor doctor = new DoctorBuilder()
+            .LicenseNumber(dto.DoctorLicenseNumber)
+            .SystemUser(systemUser)
+            .Build();
         _context.Add(doctor);
         _context.SaveChanges();
     }
