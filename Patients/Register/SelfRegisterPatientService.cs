@@ -18,14 +18,9 @@ public class SelfRegisterPatientService : ISelfRegisterPatientService
     {
         var transaction = new TransactionScope();
         IsPatientAlreadyRegistered(dto.SystemUserDTO.Ssn);
-        SystemUser systemUser  = new SystemUserBuilder()
-            .FromDTO(dto.SystemUserDTO)
-            .Build();
+        SystemUser systemUser  = new SystemUserBuilder(dto.SystemUserDTO).Build();
         _context.Add(systemUser);
-        Patient patient = new PatientBuilder()
-            .Address(dto.Address)
-            .SystemUser(systemUser)
-            .Builder();
+        Patient patient = new PatientBuilder(dto.Address, systemUser).Builder();
         _context.Add(patient);
         _context.SaveChanges();
         transaction.Complete();

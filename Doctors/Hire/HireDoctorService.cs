@@ -18,14 +18,9 @@ public class HireDoctorService : IHireDoctorService
     {
         var transaction = new TransactionScope();
         ValidateData(dto.DoctorLicenseNumber, dto.SystemUserDTO.Ssn);
-        SystemUser systemUser = new SystemUserBuilder()
-            .FromDTO(dto.SystemUserDTO)
-            .Build();
+        SystemUser systemUser = new SystemUserBuilder(dto.SystemUserDTO).Build();
         _context.Add(systemUser);
-        Doctor doctor = new DoctorBuilder()
-            .LicenseNumber(dto.DoctorLicenseNumber)
-            .SystemUser(systemUser)
-            .Build();
+        Doctor doctor = new DoctorBuilder(dto.DoctorLicenseNumber, systemUser).Build();
         _context.Add(doctor);
         _context.SaveChanges();
         transaction.Complete();

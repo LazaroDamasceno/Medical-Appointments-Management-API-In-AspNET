@@ -32,11 +32,7 @@ public class RescheduleMedicalAppointmentService : IRescheduleMedicalAppointment
         _context.Update(oldMedicalAppointment);
         Patient? patient = _context.Patients.Find(oldMedicalAppointment.PatientId);
         Doctor? doctor = _findDoctorByLicenseNumber.Find(dto.DoctorLicenseNumber);
-        MedicalAppointment? newMedicalAppointment = new MedicalAppointmentBuilder()
-            .Doctor(doctor)
-            .Patient(patient)
-            .ScheduledDateTime(dto.NewScheduledDateTime)
-            .Build();
+        MedicalAppointment? newMedicalAppointment = new MedicalAppointmentBuilder(dto.NewScheduledDateTime, patient, doctor).Build();
         _context.Add(newMedicalAppointment);
         _context.SaveChanges();
         transaction.Complete();

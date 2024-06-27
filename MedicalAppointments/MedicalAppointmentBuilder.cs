@@ -10,22 +10,11 @@ public class MedicalAppointmentBuilder
     private Patient _patient;
     private Doctor _doctor;
 
-    public MedicalAppointmentBuilder ScheduledDateTime(DateTime scheduledDateTime)
+    public MedicalAppointmentBuilder(DateTime scheduledDateTime, Patient patient, Doctor doctor)
     {
         _scheduledDateTime = scheduledDateTime;
-        return this;
-    }
-
-    public MedicalAppointmentBuilder Patient(Patient patient)
-    {
         _patient = patient;
-        return this;
-    }
-
-    public MedicalAppointmentBuilder Doctor(Doctor doctor)
-    {
         _doctor = doctor;
-        return this;
     }
 
     public MedicalAppointment Build()

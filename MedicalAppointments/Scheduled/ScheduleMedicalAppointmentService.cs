@@ -27,11 +27,7 @@ public class ScheduleMedicalAppointmentService : IScheduleMedicalAppointmentServ
         Patient patient = _findPatientBySsn.Find(dto.Ssn);
         Doctor doctor = _findDoctorByLicenseNumber.Find(dto.DoctorLicenseNumber);
         ValidateData(dto, patient, doctor);
-        MedicalAppointment medicalAppointment = new MedicalAppointmentBuilder()
-            .Patient(patient)
-            .Doctor(doctor)
-            .ScheduledDateTime(dto.ScheduledDateTime)
-            .Build();
+        MedicalAppointment medicalAppointment = new MedicalAppointmentBuilder(dto.ScheduledDateTime, patient, doctor).Build();
         _context.Add(medicalAppointment);
         _context.SaveChanges();
         transaction.Complete();

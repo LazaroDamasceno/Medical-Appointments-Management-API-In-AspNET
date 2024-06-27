@@ -5,19 +5,13 @@ namespace MedicalAppointmentsManagementAPI.Patients;
 public class PatientBuilder
 {
 
-    private string _address;
-    private SystemUser _systemUser;
+    private readonly string _address;
+    private readonly SystemUser _systemUser;
 
-    public PatientBuilder Address(string address)
+    public PatientBuilder(string address, SystemUser systemUser)
     {
         _address = address;
-        return this;
-    }
-
-    public PatientBuilder SystemUser(SystemUser systemUser)
-    {
         _systemUser = systemUser;
-        return this;
     }
 
     public Patient Builder()

@@ -1,6 +1,6 @@
 ﻿using MedicalAppointmentsManagementAPI.SystemUsers;
 
-namespace MedicalAppointmentsManagementAPI.Doctors;
+namespace MedicalAppointmentsManagementAPI.Doctors.Hire;
 
 public class DoctorBuilder
 {
@@ -8,16 +8,10 @@ public class DoctorBuilder
     private string _licenseNumber;
     private SystemUser _systemUser;
 
-    public DoctorBuilder LicenseNumber(string licenseNumber)
+    public DoctorBuilder(string licenseNumber, SystemUser systemUser)
     {
         _licenseNumber = licenseNumber;
-        return this;
-    }
-
-    public DoctorBuilder SystemUser(SystemUser systemUser)
-    {
         _systemUser = systemUser;
-        return this;
     }
 
     public Doctor Build()
