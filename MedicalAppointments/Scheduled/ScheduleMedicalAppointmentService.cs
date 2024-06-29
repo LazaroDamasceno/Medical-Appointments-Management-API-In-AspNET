@@ -13,12 +13,18 @@ public class ScheduleMedicalAppointmentService : IScheduleMedicalAppointmentServ
     private readonly AppDbContext _context;
     private readonly IFindDoctorByLicenseNumberService _findDoctorByLicenseNumber;
     private readonly IFindPatientBySsnService _findPatientBySsn;
+    private readonly IMedicalAppointmentBuilder _medicalAppointmentBuilder;
 
-    public ScheduleMedicalAppointmentService(AppDbContext context, IFindDoctorByLicenseNumberService findDoctorByLicenseNumber, IFindPatientBySsnService findPatientBySsn)
-    {
+    public ScheduleMedicalAppointmentService(
+        AppDbContext context, 
+        IFindDoctorByLicenseNumberService findDoctorByLicenseNumber, 
+        IFindPatientBySsnService findPatientBySsn, 
+        IMedicalAppointmentBuilder medicalAppointmentBuilder
+    ) {
         _context = context;
         _findDoctorByLicenseNumber = findDoctorByLicenseNumber;
         _findPatientBySsn = findPatientBySsn;
+        _medicalAppointmentBuilder = medicalAppointmentBuilder;
     }
 
     public void Schedule([Required] ScheduleMedicalAppointmentDTO dto)
@@ -27,7 +33,9 @@ public class ScheduleMedicalAppointmentService : IScheduleMedicalAppointmentServ
         Patient patient = _findPatientBySsn.Find(dto.Ssn);
         Doctor doctor = _findDoctorByLicenseNumber.Find(dto.DoctorLicenseNumber);
         ValidateData(dto, patient, doctor);
-        MedicalAppointment medicalAppointment = new MedicalAppointmentBuilder(dto.ScheduledDateTime, patient, doctor).Build();
+        MedicalAppointment medicalAppointment = _medicalAppointmentBuilder
+            .Create(dto.ScheduledDateTime, patient, doctor)
+            .Build();
         _context.Add(medicalAppointment);
         _context.SaveChanges();
         transaction.Complete();

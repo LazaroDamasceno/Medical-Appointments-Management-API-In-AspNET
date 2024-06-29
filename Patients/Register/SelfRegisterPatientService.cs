@@ -7,20 +7,24 @@ namespace MedicalAppointmentsManagementAPI.Patients.Register;
 public class SelfRegisterPatientService : ISelfRegisterPatientService
 {
 
-    private AppDbContext _context;
+    private readonly AppDbContext _context;
+    private readonly IPatientBuilder _patientBuilder;
+    private readonly ISystemUserBuilder _systemUserBuilder;
 
-    public SelfRegisterPatientService(AppDbContext context)
+    public SelfRegisterPatientService(AppDbContext context, IPatientBuilder patientBuilder, ISystemUserBuilder systemUserBuilder)
     {
         _context = context;
+        _patientBuilder = patientBuilder;
+        _systemUserBuilder = systemUserBuilder;
     }
 
     public void SelfRegister([Required] SelfRegisterPatientDTO dto)
     {
         var transaction = new TransactionScope();
         IsPatientAlreadyRegistered(dto.SystemUserDTO.Ssn);
-        SystemUser systemUser  = new SystemUserBuilder(dto.SystemUserDTO).Build();
+        SystemUser systemUser  = _systemUserBuilder.Create(dto.SystemUserDTO).Build();
         _context.Add(systemUser);
-        Patient patient = new PatientBuilder(dto.Address, systemUser).Builder();
+        Patient patient = _patientBuilder.Create(dto.Address).Build();
         _context.Add(patient);
         _context.SaveChanges();
         transaction.Complete();

@@ -2,16 +2,21 @@
 
 namespace MedicalAppointmentsManagementAPI.Doctors.Hire;
 
-public class DoctorBuilder
+public class DoctorBuilder : IDoctorBuilder
 {
 
     private string _licenseNumber;
     private SystemUser _systemUser;
 
-    public DoctorBuilder(string licenseNumber, SystemUser systemUser)
+    private DoctorBuilder(string licenseNumber, SystemUser systemUser)
     {
         _licenseNumber = licenseNumber;
         _systemUser = systemUser;
+    }
+
+    public DoctorBuilder Create(string licenseNumber, SystemUser systemUser)
+    {
+        return new(licenseNumber, systemUser);
     }
 
     public Doctor Build()

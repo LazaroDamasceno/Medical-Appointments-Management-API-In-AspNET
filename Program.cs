@@ -4,6 +4,7 @@ using MedicalAppointmentsManagementAPI.Doctors.FindByLicenseNumber;
 using MedicalAppointmentsManagementAPI.Doctors.Hire;
 using MedicalAppointmentsManagementAPI.Doctors.Terminate;
 using MedicalAppointmentsManagementAPI.Doctors.Update;
+using MedicalAppointmentsManagementAPI.MedicalAppointments;
 using MedicalAppointmentsManagementAPI.MedicalAppointments.AddMedicalNoted;
 using MedicalAppointmentsManagementAPI.MedicalAppointments.Cancel;
 using MedicalAppointmentsManagementAPI.MedicalAppointments.Find;
@@ -17,10 +18,12 @@ using MedicalAppointmentsManagementAPI.MedicalAppointments.FindAll.Scheduled.ByP
 using MedicalAppointmentsManagementAPI.MedicalAppointments.FindAll.ValidateDateTimes;
 using MedicalAppointmentsManagementAPI.MedicalAppointments.Reschedule;
 using MedicalAppointmentsManagementAPI.MedicalAppointments.Scheduled;
+using MedicalAppointmentsManagementAPI.Patients;
 using MedicalAppointmentsManagementAPI.Patients.FindAll;
 using MedicalAppointmentsManagementAPI.Patients.FindBySsn;
 using MedicalAppointmentsManagementAPI.Patients.Register;
 using MedicalAppointmentsManagementAPI.Patients.Update;
+using MedicalAppointmentsManagementAPI.SystemUsers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,6 +56,10 @@ builder.Services.AddScoped<IFindScheduledMedicalAppointmentsByDoctorService, Fin
 builder.Services.AddScoped<IFindFinishedMedicalAppointmentsByPatientService, FindFinishedMedicalAppointmentsByPatientService>();
 builder.Services.AddScoped<IFindFinishedMedicalAppointmentsByDoctorService, FindFinishedMedicalAppointmentsByDoctorService>();
 builder.Services.AddScoped<IValidateDateTimesService, ValidateDateTimesService>();
+builder.Services.AddScoped<ISystemUserBuilder, SystemUserBuilder>();
+builder.Services.AddScoped<IPatientBuilder, PatientBuilder>();
+builder.Services.AddScoped<IDoctorBuilder, DoctorBuilder>();
+builder.Services.AddScoped<IMedicalAppointmentBuilder, MedicalAppointmentBuilder>();
 
 var app = builder.Build();
 

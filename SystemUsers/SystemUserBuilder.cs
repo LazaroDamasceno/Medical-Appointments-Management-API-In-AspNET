@@ -1,6 +1,6 @@
 ﻿namespace MedicalAppointmentsManagementAPI.SystemUsers;
 
-public record SystemUserBuilder
+public record SystemUserBuilder : ISystemUserBuilder
 {
 
     private readonly string _firstName;
@@ -12,7 +12,7 @@ public record SystemUserBuilder
     private readonly string _phoneNumber;
     private readonly string _gender;
 
-    public SystemUserBuilder (RegisterSystemUserDTO dto)
+    private SystemUserBuilder (RegisterSystemUserDTO dto)
     {
         _firstName = dto.FirstName;
         _middleName = dto.MiddleName;
@@ -22,6 +22,11 @@ public record SystemUserBuilder
         _email = dto.Email;
         _phoneNumber = dto.PhoneNumber;
         _gender = dto.Gender;
+    }
+
+    public SystemUserBuilder Create(RegisterSystemUserDTO dto)
+    {
+        return new(dto);
     }
 
     public SystemUser Build()

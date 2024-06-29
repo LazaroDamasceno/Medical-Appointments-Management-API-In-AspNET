@@ -1,20 +1,26 @@
-﻿using MedicalAppointmentsManagementAPI.SystemUsers;
+﻿using MedicalAppointmentsManagementAPI.Patients.Register;
+using MedicalAppointmentsManagementAPI.SystemUsers;
 
 namespace MedicalAppointmentsManagementAPI.Patients;
 
-public class PatientBuilder
+public class PatientBuilder : IPatientBuilder
 {
 
     private readonly string _address;
     private readonly SystemUser _systemUser;
 
-    public PatientBuilder(string address, SystemUser systemUser)
+    private PatientBuilder(string address, SystemUser systemUser)
     {
         _address = address;
         _systemUser = systemUser;
     }
 
-    public Patient Builder()
+    public PatientBuilder Create(string address, SystemUser systemUser)
+    {
+        return new(address, systemUser);
+    }
+
+    public Patient Build()
     {
         return new Patient()
         {
