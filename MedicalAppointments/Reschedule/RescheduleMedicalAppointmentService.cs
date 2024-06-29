@@ -14,12 +14,18 @@ public class RescheduleMedicalAppointmentService : IRescheduleMedicalAppointment
     private readonly IFindDoctorByLicenseNumberService _findDoctorByLicenseNumber;
     private readonly IFindMedicalAppointmentService _findMedicalAppointmentService;
     private readonly AppDbContext _context;
+    private readonly IMedicalAppointmentBuilder _medicalAppointmentBuilder;
 
-    public RescheduleMedicalAppointmentService(IFindDoctorByLicenseNumberService findDoctorByLicenseNumber, IFindMedicalAppointmentService findMedicalAppointmentService, AppDbContext context)
-    {
+    public RescheduleMedicalAppointmentService(
+        IFindDoctorByLicenseNumberService findDoctorByLicenseNumber, 
+        IFindMedicalAppointmentService findMedicalAppointmentService, 
+        AppDbContext context,
+        IMedicalAppointmentBuilder medicalAppointmentBuilder
+    ) {
         _findDoctorByLicenseNumber = findDoctorByLicenseNumber;
         _findMedicalAppointmentService = findMedicalAppointmentService;
         _context = context;
+        _medicalAppointmentBuilder = medicalAppointmentBuilder;
     }
 
     public void Reschedule([Required] RescheduleMedicalAppointmentDTO dto)
@@ -32,7 +38,7 @@ public class RescheduleMedicalAppointmentService : IRescheduleMedicalAppointment
         _context.Update(oldMedicalAppointment);
         Patient? patient = _context.Patients.Find(oldMedicalAppointment.PatientId);
         Doctor? doctor = _findDoctorByLicenseNumber.Find(dto.DoctorLicenseNumber);
-        MedicalAppointment? newMedicalAppointment = new MedicalAppointmentBuilder(dto.NewScheduledDateTime, patient, doctor).Build();
+        MedicalAppointment? newMedicalAppointment = _medicalAppointmentBuilder.Create(dto.NewScheduledDateTime, patient, doctor).Build();
         _context.Add(newMedicalAppointment);
         _context.SaveChanges();
         transaction.Complete();

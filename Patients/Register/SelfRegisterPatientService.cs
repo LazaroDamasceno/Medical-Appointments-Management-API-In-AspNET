@@ -11,8 +11,11 @@ public class SelfRegisterPatientService : ISelfRegisterPatientService
     private readonly IPatientBuilder _patientBuilder;
     private readonly ISystemUserBuilder _systemUserBuilder;
 
-    public SelfRegisterPatientService(AppDbContext context, IPatientBuilder patientBuilder, ISystemUserBuilder systemUserBuilder)
-    {
+    public SelfRegisterPatientService(
+        AppDbContext context, 
+        IPatientBuilder patientBuilder, 
+        ISystemUserBuilder systemUserBuilder
+    ) {
         _context = context;
         _patientBuilder = patientBuilder;
         _systemUserBuilder = systemUserBuilder;
@@ -24,7 +27,7 @@ public class SelfRegisterPatientService : ISelfRegisterPatientService
         IsPatientAlreadyRegistered(dto.SystemUserDTO.Ssn);
         SystemUser systemUser  = _systemUserBuilder.Create(dto.SystemUserDTO).Build();
         _context.Add(systemUser);
-        Patient patient = _patientBuilder.Create(dto.Address).Build();
+        Patient patient = _patientBuilder.Create(dto.Address, systemUser).Build();
         _context.Add(patient);
         _context.SaveChanges();
         transaction.Complete();

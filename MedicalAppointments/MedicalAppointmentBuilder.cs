@@ -11,16 +11,12 @@ public class MedicalAppointmentBuilder : IMedicalAppointmentBuilder
     private Patient _patient;
     private Doctor _doctor;
 
-    private MedicalAppointmentBuilder(DateTime scheduledDateTime, Patient patient, Doctor doctor)
+    public MedicalAppointmentBuilder Create(DateTime scheduledDateTime, Patient patient, Doctor doctor)
     {
         _scheduledDateTime = scheduledDateTime;
         _patient = patient;
         _doctor = doctor;
-    }
-
-    public MedicalAppointmentBuilder Create(DateTime scheduledDateTime, Patient patient, Doctor doctor)
-    {
-        return new(scheduledDateTime, patient, doctor);
+        return this;
     }
 
     public MedicalAppointment Build()

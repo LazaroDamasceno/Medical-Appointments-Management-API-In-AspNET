@@ -3,16 +3,16 @@
 public record SystemUserBuilder : ISystemUserBuilder
 {
 
-    private readonly string _firstName;
-    private readonly string _middleName;
-    private readonly string _lastName;
-    private readonly DateOnly _birthDay;
-    private readonly string _ssn;
-    private readonly string _email;
-    private readonly string _phoneNumber;
-    private readonly string _gender;
+    private string _firstName;
+    private string _middleName;
+    private string _lastName;
+    private DateOnly _birthDay;
+    private string _ssn;
+    private string _email;
+    private string _phoneNumber;
+    private string _gender;
 
-    private SystemUserBuilder (RegisterSystemUserDTO dto)
+    public SystemUserBuilder Create(RegisterSystemUserDTO dto)
     {
         _firstName = dto.FirstName;
         _middleName = dto.MiddleName;
@@ -22,11 +22,7 @@ public record SystemUserBuilder : ISystemUserBuilder
         _email = dto.Email;
         _phoneNumber = dto.PhoneNumber;
         _gender = dto.Gender;
-    }
-
-    public SystemUserBuilder Create(RegisterSystemUserDTO dto)
-    {
-        return new(dto);
+        return this;
     }
 
     public SystemUser Build()
